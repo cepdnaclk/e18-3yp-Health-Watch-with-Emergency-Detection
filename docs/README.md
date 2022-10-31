@@ -3,20 +3,20 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and project title
-repository-name: eYY-3yp-project-template
-title: Project Template
+repository-name: e18-3yp-Health-Watch-with-Emergency-Detection
+title: Health Watch with Emergency Detection - MediCare
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# Health Watch with Emergency Detection - MediCare
 
 ---
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/18/276, Jayathu Rajasooriya, [email](mailto:name@email.com)
+-  E/18/283, Jayathri Ranasinghe, [email](mailto:name@email.com)
+-  E/18/412, Sanjaya, [email](mailto:name@email.com)
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
@@ -35,7 +35,12 @@ title: Project Template
 
 ## Introduction
 
-Description of the real world problem and solution, impact
+There is a huge increase in the number of people who are getting cardiovascular diseases and sometimes they pass away suddenly and sometimes there is still time to save them if the right medication is given as soon as possible. It is always about the time. Also, even after a surgery there are occasions where things get complicated and regular monitoring is essential.
+
+And not only the sudden accidents that are occuring due to the cardiovascular diseases but day to day activities can be a cause to an accident. Therefore in order to make sure the elderly people’s health and to take care of them by giving proper attention is really required.
+
+Now there is no specific range of age to get sick and to face accidents we all need to look after ourselves. Therefore, it is good to keep track of our heart rate in order to make sure whether we are in good condition or not.There should be a method which does not cost more money or time to keep track of our health without being limited to an age or any specific diseases.
+
 
 
 ## Solution Architecture
