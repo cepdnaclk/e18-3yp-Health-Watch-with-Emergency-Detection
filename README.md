@@ -1,14 +1,33 @@
 ___
-# DELETE THIS INSTRUCTIONS AND ADD AN INTRODUCTION ABOUT YOUR PROJECT
 # Health Watch with Emergency Detection
 ___
 
-# eYY-3yp-project-template
+# _What to know abour your heart rate_
 
-//This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
-This is a smart wrist-worn device, which can measure someone's heart rate, oxygen level, body temperature and also the acceleration motion of his body. The device sends these data to a cloud server and when any abnormal behaviour of a parameter is detected, the system takes necessary actions. User can add a list of emergency contacts, to whom the system can automatically send notifications in a medical emergency situation. Also, user can view a summary of his real-time health condition via the mobile application, which comes with the system itself.
+The normal Resting Heart Rate for a adult ranges from **60 to 100 beats per minute**. If you are not like an athlete your resting heart rate must be above 60. For trained athletes(physically fit) it is possible to have resting heart rate like 40. Other than that if someone has a resting heart rate below 60 which is called **bradycardia** and has a higher heart rate than 100 is called **tachycardia** they must consult their doctor since this can be an indication of an underlying problem.
 
-Additionally, the system has a feature to set reminders for timely medications and inform respective parties if a medical doze is missed. This feature is very useful for elderly and also for people who are very busy with their daily routines.
+There are several facts that are going to affect to the heart rate of a person:
+
+- Age
+- Fitness and activeness
+- Addicted to smoking
+- Having cardiovascular diseases, high cholesterol and diabetes
+- Emotions (stress level)
+- Different medications
+
+### Higher Heart Rate
+Normally higher rate occurs when people are exercising and nervous as well. But many studies have confirmed that when the heart rate of a person is higher then the risk of having heart diseases is high. Also, certain medications, low levels of potassium in the blood and overactive thyroid gland can cause this too.
+
+### Normal Heart Rate
+When a person is fit physically it is obvious that he has a normal heart rate and after working out their heart rate comes to the lower level(to normal from higher) with minimum time than the others. 
+
+### Slower Heart Rate
+This can happen due to being physically fit as above mentioned. Also, this can cause by a medication or sleep patterns. But this can be some indication for diseases like heart diseases, some infections, higher level potassium in blood or conditions in thyroid gland like under activeness.
+
+
+When you can keep track of heart rate you can get a better idea about your fitness, heart health and emotional health as well.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Enable GitHub Pages
 
