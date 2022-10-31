@@ -1,10 +1,14 @@
 ___
 # DELETE THIS INSTRUCTIONS AND ADD AN INTRODUCTION ABOUT YOUR PROJECT
+# Health Watch with Emergency Detection
 ___
 
 # eYY-3yp-project-template
 
-This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
+//This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
+This is a smart wrist-worn device, which can measure someone's heart rate, oxygen level, body temperature and also the acceleration motion of his body. The device sends these data to a cloud server and when any abnormal behaviour of a parameter is detected, the system takes necessary actions. User can add a list of emergency contacts, to whom the system can automatically send notifications in a medical emergency situation. Also, user can view a summary of his real-time health condition via the mobile application, which comes with the system itself.
+
+Additionally, the system has a feature to set reminders for timely medications and inform respective parties if a medical doze is missed. This feature is very useful for elderly and also for people who are very busy with their daily routines.
 
 ### Enable GitHub Pages
 
