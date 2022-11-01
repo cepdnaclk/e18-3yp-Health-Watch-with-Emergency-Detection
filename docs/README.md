@@ -42,10 +42,18 @@ And not only the sudden accidents that are occuring due to the cardiovascular di
 Now there is no specific range of age to get sick and to face accidents we all need to look after ourselves. Therefore, it is good to keep track of our heart rate in order to make sure whether we are in good condition or not.There should be a method which does not cost more money or time to keep track of our health without being limited to an age or any specific diseases.
 
 
-
 ## Solution Architecture
 
-High level diagram + description
+Our system consists of three main components. They are,
+- wrist-worn device with sensors
+- cloud server
+- mobile application
+
+Relevant health parameters such as heart rate, blood oxygen level and temperature are read from the sensors in the wrist-worn device. These data is continuosuly transmitted to the cloud server by 3G signals, using the 3G module included in the device.
+
+In the server, the obtained data is analyzed and if any abnormal behaviour is detected in these health data, it immediately notifies the user and asks for his confirmation. If the user is unable to response to this notification in a given time, emergency notifications are sent to the contacts, which the user added into the system. User can customize this notification system and to whom these notifications are sent.
+
+The mobile application directly connects with the cloud server and it shows a real-time summary of health data of the user, which was obtained from the cloud. User can add, update and remove the contacts which he intends to notify in case of an emergency. Furthermore, he can setup a list of reminders for his medications. The user is supposed to confirm taking this medicine or otherwise it alerts him or his caregivers (the latter is optional).  
 
 ## Hardware and Software Designs
 
@@ -61,7 +69,17 @@ All items and costs
 
 | Item          | Quantity  | Unit Cost  | Total  |
 | ------------- |:---------:|:----------:|-------:|
-| Sample item   | 5         | 10 LKR     | 50 LKR |
+| MAX30100 Heart rate oxygen pulse sensor   | 1         | 690 LKR     | 690 LKR |
+| LM35 TO-92 precision centigrade temperature sensor | 1  | 245 LKR | 245 LKR |
+| Accelerometer module gyroscope MPU-6050 | 1 | 695 LKR | 695 LKR |
+| Arduino UNO ATMEGA328P development board | 1 | 3880 LKR | 3880 LKR |
+| 1.5V Battery (AA) | 4 | 50 LKR | 240 LKR |
+| Battery holder storage case | 1 | 230 LKR | 230 LKR |
+| 10cm female to female jumper wires | 40 Pcs | 195 LKR | 195 LKR |
+| Resistors | 25 Pcs (1kOhm) & 25 Pcs (330Ohm) | 100 LKR | 100 LKR |
+| Breadboard 400-Tie-Points | 1 | 295 LKR | 295 LKR |
+| SIM5230E Simcom 3G Module | 1 | 7560 LKR |
+| 3V mini buzzer | 1 | 80 LKR |
 
 ## Conclusion
 
