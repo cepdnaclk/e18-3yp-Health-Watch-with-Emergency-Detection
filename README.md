@@ -18,6 +18,11 @@ And not only the sudden accidents that are occuring due to the cardiovascular di
 
 Now there is no specific range of age to get sick and to face accidents we all need to look after ourselves. Therefore, it is good to keep track of our heart rate in order to make sure whether we are in good condition or not.There should be a method which does not cost more money or time to keep track of our health without being limited to an age or any specific diseases.
 
+# Our solution
+Our solution is to implement a health watch which reads heart rate, Oxygen level of the blood and body temperature. Then our system has the ability to analyze the above data which come from above parameter and detect an emergency situation. Then the system can act as the user customizes.
+It automatically sends notifications along with his location to the caregivers and his or her personal doctors, added by the user.
+It also informs the user's personal doctors (optional)
+Also, it reminds user about his regular medications and other doctor check ups.
 ___
 # _What to know about your heart rate_
 
