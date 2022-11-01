@@ -4,6 +4,14 @@ ___
 
 # Background
 
+- 524 deaths per 100 000 in Sri Lanka, due to CVDs
+
+- Road Traffic Accidents Deaths in Sri Lanka reached 4,200 in 2019 (3.62% of total deaths)
+
+- Globally, approximately 275,000 patients die each year due to medication non-adherence
+
+- Thousands of people die because of lack of enough medical attention in emergencies as well as in long term diseases
+
 There is a huge increase in the number of people who are getting cardiovascular diseases and sometimes they pass away suddenly and sometimes there is still time to save them if the right medication is given as soon as possible. It is always about the time. Also, even after a surgery there are occasions where things get complicated and regular monitoring is essential.
 
 And not only the sudden accidents that are occuring due to the cardiovascular diseases but day to day activities can be a cause to an accident. Therefore in order to make sure the elderly people’s health and to take care of them by giving proper attention is really required.
