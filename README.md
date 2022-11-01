@@ -19,6 +19,9 @@ And not only the sudden accidents that are occuring due to the cardiovascular di
 Now there is no specific range of age to get sick and to face accidents we all need to look after ourselves. Therefore, it is good to keep track of our heart rate in order to make sure whether we are in good condition or not.There should be a method which does not cost more money or time to keep track of our health without being limited to an age or any specific diseases.
 
 # Our solution
+
+![image](./images/logo_medicare.png)
+
 Our solution is to implement a health watch which reads heart rate, Oxygen level of the blood and body temperature. Then our system has the ability to analyze the above data which come from above parameter and detect an emergency situation. Then the system can act as the user customizes.
 It automatically sends notifications along with his location to the caregivers and his or her personal doctors, added by the user.
 It also informs the user's personal doctors (optional)
@@ -46,7 +49,6 @@ When a person is fit physically it is obvious that he has a normal heart rate an
 ### Slower Heart Rate
 This can happen due to being physically fit as above mentioned. Also, this can cause by a medication or sleep patterns. But this can be some indication for diseases like heart diseases, some infections, higher level potassium in blood or conditions in thyroid gland like under activeness.
 
-![image](./images/logo_medicare.png)
 
 When you can keep track of heart rate you can get a better idea about your fitness, heart health and emotional health as well.
 
