@@ -73,13 +73,13 @@ All items and costs
 | LM35 TO-92 precision centigrade temperature sensor | 1  | 245 LKR | 245 LKR |
 | Accelerometer module gyroscope MPU-6050 | 1 | 695 LKR | 695 LKR |
 | Arduino UNO ATMEGA328P development board | 1 | 3880 LKR | 3880 LKR |
-| 1.5V Battery (AA) | 4 | 50 LKR | 240 LKR |
+| 1.5V Battery (AA) | 4 | 60 LKR | 240 LKR |
 | Battery holder storage case | 1 | 230 LKR | 230 LKR |
-| 10cm female to female jumper wires | 40 Pcs | 195 LKR | 195 LKR |
+| 10cm female to female jumper wires | Pack with 40 Pcs | 195 LKR | 195 LKR |
 | Resistors | 25 Pcs (1kOhm) & 25 Pcs (330Ohm) | 100 LKR | 100 LKR |
 | Breadboard 400-Tie-Points | 1 | 295 LKR | 295 LKR |
-| SIM5230E Simcom 3G Module | 1 | 7560 LKR |
-| 3V mini buzzer | 1 | 80 LKR |
+| SIM5230E Simcom 3G Module | 1 | 7560 LKR | 7560 LKR |
+| 3V mini buzzer | 1 | 80 LKR | 80 LKR |
 
 ## Conclusion
 
