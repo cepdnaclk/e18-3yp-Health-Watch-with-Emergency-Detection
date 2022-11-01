@@ -46,7 +46,7 @@ When a person is fit physically it is obvious that he has a normal heart rate an
 ### Slower Heart Rate
 This can happen due to being physically fit as above mentioned. Also, this can cause by a medication or sleep patterns. But this can be some indication for diseases like heart diseases, some infections, higher level potassium in blood or conditions in thyroid gland like under activeness.
 
-![image](./images/heart_rate.jpeg)
+![image](./images/logo_medicare.png)
 
 When you can keep track of heart rate you can get a better idea about your fitness, heart health and emotional health as well.
 
