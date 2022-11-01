@@ -14,9 +14,9 @@ title: Health Watch with Emergency Detection - MediCare
 ---
 
 ## Team
--  E/18/276, Jayathu Rajasooriya, [email](mailto:name@email.com)
--  E/18/283, Jayathri Ranasinghe, [email](mailto:name@email.com)
--  E/18/412, Sanjaya, [email](mailto:name@email.com)
+-  E/18/276, Rajasooriya J.M., [email](mailto:e18276@eng.pdn.ac.lk)
+-  E/18/283, Ranasinghe R.D.J.M., [email](mailto:e18283@eng.pdn.ac.lk)
+-  E/18/412, De Silva M.S.G.M., [email](mailto:e18412eng.pdn.ac.lk)
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
