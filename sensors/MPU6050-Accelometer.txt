@@ -1,0 +1,16 @@
+MPU6050 Module Hardware Overview
+_________________________________
+
+It can measure angular momentum or rotation along all three axes, static acceleration caused by gravity, and dynamic acceleration caused by motion, shock, or vibration.
+
+The module includes an on-board LD3985 3.3V regulator, so you can safely use it with a 5V logic microcontroller like Arduino.
+
+The MPU6050 consumes less than 3.6mA during measurements and only 5μA when idle.
+
+Specifications
+-------------------
+Operating Voltage	5V (typical)
+Accelerometer Range	±2g, ±4g, ±8g, ±16g
+Gyroscope Range	±250°/s, ±500°/s, ±1000°/s, ±2000°/s
+Temperature Range	-40 to +85°C
+Absolute Maximum Acceleration	Up to 10,000g

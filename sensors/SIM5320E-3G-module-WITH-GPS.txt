@@ -1,0 +1,21 @@
+SIM5320e 3G-module / GPS
+------------------------
+
+GPS:
+accuracy: around 2.5m
+------------------------
+
+Module(3G):
+Input Voltage: 4.6 - 5.2V
+Minimum Current: 1A
+Maximum Upload: Speed384 Kbps
+Maximum Download Speed: 3.6 Mbps
+------------------------
+
+connect to arduino
+PD2(INT0)-2 (arduino - module)
+PD3(INT1)-3
+PB0(CLK0)-8
+GND - GND
+Vin - Vin
+
