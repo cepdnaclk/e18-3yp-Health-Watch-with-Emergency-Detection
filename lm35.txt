@@ -1,0 +1,15 @@
+LM35 Temperature Sensor
+
+It has an accuracy of ±¼°C at room temperature and ±¾°C over a full −55°C to 150°C temperature range.
+The LM35 series are precision integrated-circuit temperature devices with an output voltage linearly- proportional to the Centigrade temperature.
+The LM35 does not need any exterior calibration
+The LM35 has an output voltage that is proportional to the Celsius temperature. The scale factor is 0.01V/°C.
+Vin: 4V to 30V
+current draw: 60uA
+provides analog output(voltage)
+
+pins
+Vin(power) - Vo(analog pin) - GND
+
+read more:
+https://lastminuteengineers.com/lm35-temperature-sensor-arduino-tutorial/#:~:text=a%20ground%20pin.-,Connecting%20the%20LM35%20Temperature%20Sensor%20to%20an%20Arduino,ground%20connects%20to%20'GND'.
