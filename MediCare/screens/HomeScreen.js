@@ -4,6 +4,10 @@ import { StyleSheet,Text, Button, View } from 'react-native';
 export default function HomeScreen({ navigation }) {
   return ( <>
             <View style={styles.container1}>
+    <Button 
+        title="Log in screen"
+        onPress={() => navigation.navigate("Login", { username: "Anne" })}
+      />
       <Button 
         title="Navigate to second screen: Anne"
         onPress={() => navigation.navigate("Second", { username: "Anne" })}
@@ -31,13 +35,13 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container1: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   container2: {
-    flex: 4,
+    flex: 2,
     backgroundColor: '#33bbff',
     alignItems: 'center',
     justifyContent: 'center',
