@@ -1,0 +1,1 @@
+{"version":3,"names":["useDocumentTitle"],"sources":["useDocumentTitle.native.tsx"],"sourcesContent":["export default function useDocumentTitle() {\n  // Noop for React Native\n}\n"],"mappings":"AAAA,eAAe,SAASA,gBAAT,GAA4B,CACzC;AACD"}
