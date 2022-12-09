@@ -19,14 +19,21 @@ export default function HomeScreen({ navigation }) {
       <StatusBar style="auto" />
     </View>
     <View style={styles.container2}></View>
+    
     <View style={styles.container3}>
         <View style={styles.rectangle1}>
-            <Text>Oxygen level of blood</Text>
+            <View style={styles.rectangle2}><Text>Heart Rate</Text></View>
+            <View style={styles.rectangle3}><Text>#000</Text></View>
         </View>
         <View style={styles.rectangle1}>
-            <Text>Temperature</Text>
+            <View style={styles.rectangle2}><Text>Oxygen level of blood</Text></View>
+            <View style={styles.rectangle3}><Text>#000</Text></View>
         </View>
-        <View style={styles.rectangle1}></View>
+        <View style={styles.rectangle1}>
+            <View style={styles.rectangle2}><Text>Temperature</Text></View>
+            <View style={styles.rectangle3}><Text>#000</Text></View>
+        </View>
+        
     </View>
   </>
     
@@ -58,6 +65,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width:300,
+    height:75,
+    margin:4,
+    borderRadius:10,
+    flexDirection: "row"
+  },
+  rectangle2: {
+    
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width:200,
+    height:75,
+    margin:4,
+    borderRadius:10
+  },
+
+  rectangle3: {
+    
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width:100,
     height:75,
     margin:4,
     borderRadius:10
