@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:my_app_01/NetworkHandler.dart';
 // import 'package:settings/login.dart';
 // import 'package:settings/models/contactitem.dart';
 // import 'package:settings/splash.dart';
@@ -18,7 +21,25 @@ class newcontacts extends StatefulWidget {
 }
 
 class _newcontacts extends State<newcontacts> {
+  NetworkHandler networkHandler = NetworkHandler();
   List<contactItem> contactList = [];
+
+  // @override
+  // Future<void> initState() async {
+  //   super.initState();
+  //   var response =
+  //       await networkHandler.getContacts("user/view/contacts/jaya123");
+  //   print(response);
+  //   var r = json.decode(response);
+  //   final length = r["data"].length;
+  //   for (int i = 0; i < length; i++) {
+  //     // ignore: unnecessary_new
+  //     contactList.add(new contactItem(
+  //         r["data"][i]["contacts"]["contact_name"],
+  //         r["data"][i]["contacts"]["email"],
+  //         r["data"][i]["contacts"]["phone_number"]));
+  //   }
+  // }
 
   String txt1 = "";
   String txt2 = "";
@@ -91,10 +112,8 @@ class _newcontacts extends State<newcontacts> {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CircularMenu()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const CircularMenu()));
           },
         ),
       ),
