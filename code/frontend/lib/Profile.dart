@@ -103,6 +103,8 @@ class _profile extends State<profile> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      // submit data to the server
+
                       Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -114,7 +116,7 @@ class _profile extends State<profile> {
                         primary: Colors.blue,
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
+                        borderRadius: BorderRadius.circular(20))),
                     child: const Text(
                       "save",
                       style: TextStyle(
