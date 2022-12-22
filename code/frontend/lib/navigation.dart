@@ -1,5 +1,6 @@
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app_01/doctors.dart';
 import 'package:my_app_01/login_page.dart';
 import 'package:my_app_01/preview.dart';
 import 'package:my_app_01/reminders.dart';
@@ -60,10 +61,15 @@ class CircularMenu extends StatelessWidget {
                 }),
             InkWell(
                 child: const Icon(
-                  Icons.manage_accounts_rounded,
+                  Icons.health_and_safety,
                   size: 50,
                 ),
-                onTap: () {}),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (contex) => Doctors()));
+                }),
           ],
         ),
       ),
