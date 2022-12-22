@@ -69,12 +69,15 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
                               return const Center(
                                   child: CircularProgressIndicator());
                             });
+                        Map<String, String> data = {"title": item};
+                        int deleteResponse = await networkHandler
+                            .deleteReminders("user/delete/reminders/jaya123",data);
                         String response = await networkHandler
                             .getReminders("user/view/reminders/jaya123");
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                         // ignore: avoid_print
-                        print("confirmation no");
+                        print("confirmation yes");
                         // ignore: use_build_context_synchronously
                         Navigator.pushReplacement(
                             context,
@@ -150,21 +153,20 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reminders"),
-        leading: Builder(
-                builder: (BuildContext context) {
-                  return IconButton(
-                    icon: const Icon(Icons.message),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Reminders()));
-                    },
-                  );
+          title: const Text("Reminders"),
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.message),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Reminders()));
                 },
-              
-      )),
+              );
+            },
+          )),
       body: Container(
         color: const Color.fromARGB(255, 167, 204, 255),
         child: showList(),
