@@ -142,6 +142,19 @@ h6,
     background: linear-gradient(to bottom right, var(--primary), var(--secondary));
 }
 
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 /*** Navbar ***/
 .navbar-light .navbar-nav .nav-link {
