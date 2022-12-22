@@ -1,7 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:my_app_01/navigation.dart';
+
+import 'NetworkHandler.dart';
 
 class Preview extends StatefulWidget {
   const Preview({super.key});
@@ -10,30 +15,33 @@ class Preview extends StatefulWidget {
 }
 
 class _PreviewState extends State<Preview> {
-
   late Timer timer;
+  NetworkHandler networkHandler = NetworkHandler();
 
-  int heartRate = 0;
-  int oxygenLevel = 0;
-  int bodyTemperature = 0;
+  String heartRate = "";
+  String oxygenLevel = "";
+  String bodyTemperature = "";
 
-  @override
-  void initState() {
-    super.initState();
-    timer = Timer.periodic(
-        const Duration(seconds: 2), (Timer t) => changeContent());
-  }
-
-  void changeContent() {
+  void refreshData() async {
+    String response =
+        await networkHandler.getReminders("user/userTemp/jaya123");
+    var r = json.decode(response);
+    r = r["temp"];
+    r = r.toString();
+    r = r[0] + r[1] + r[2] + r[3] + r[4];
+    print("response: $r");
     setState(() {
-      oxygenLevel++;
-      bodyTemperature++;
-      heartRate++;
+      oxygenLevel = r;
+      bodyTemperature = r;
+      heartRate = r;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 1), () {
+      refreshData();
+    });
     return SafeArea(
       child: SafeArea(
         child: Scaffold(
@@ -44,7 +52,7 @@ class _PreviewState extends State<Preview> {
                   return IconButton(
                     icon: const Icon(Icons.preview),
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const CircularMenu()));
