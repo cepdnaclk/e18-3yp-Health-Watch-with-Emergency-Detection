@@ -26,7 +26,7 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: code/backend
+        working-directory: mobile_app/backend
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
