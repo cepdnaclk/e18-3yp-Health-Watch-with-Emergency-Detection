@@ -1,2 +1,1 @@
-[config]
-project = code/backend
+kuduscript -y --node --sitePath code/backend
