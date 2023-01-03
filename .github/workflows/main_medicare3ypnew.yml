@@ -19,14 +19,14 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: '18-lts'
 
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: mobile_app/backend
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'medicare3ypnew'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0C65F927C16347C9A3BB254C929CFED7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4CBC987637B846CF80A9527858409DAC }}
           package: .
