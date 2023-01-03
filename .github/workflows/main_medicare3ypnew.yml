@@ -47,10 +47,15 @@ jobs:
           name: node-app
 
       - name: 'Deploy to Azure Web App'
+        run: |
+         npm install
+         npm run build --if-present
+         npm run test --if-present
+        working-directory: code/backend
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'medicare3ypnew'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0C65F927C16347C9A3BB254C929CFED7 }}
-          package: .
+        #uses: azure/webapps-deploy@v2
+        #with:
+        #  app-name: 'medicare3ypnew'
+        #  slot-name: 'Production'
+        #  publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0C65F927C16347C9A3BB254C929CFED7 }}
+        #  package: .
