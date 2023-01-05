@@ -3,6 +3,7 @@ const express = require("express");
 const User = require("../models/user_model");
 const Reminder = require("../models/reminders_model.js");
 const Contact = require("../models/emergency_contact_model.js");
+const Doctor = require("../models/doctor_model.js");
 const config = require("../config");
 const jwt = require("jsonwebtoken");
 const middleware = require("../middleware");
@@ -147,6 +148,35 @@ router.route("/add/contacts/:username").post((request, response)=>{
 
 router.route("/view/contacts/:username").get((request, response) => { //getting userdata through get request from the username
     Contact.find({username: request.params.username}, (err, result)=>{
+        if(err) response.status(500).json({msg:err});
+        response.json({
+            data: result,
+            username: request.params.username,
+        });
+    });
+});
+
+//adding doctors and viewing doctors
+router.route("/add/doctors/:username").post((request, response)=>{
+    console.log("inside **doctors");
+    const doctor = new Doctor({
+
+        username: request.params.username,
+        doctors: request.body.doctors,
+    });
+    doctor
+        .save()
+        .then(() =>{
+            console.log("reminder inserted");
+            response.status(200).json("ok");
+        })
+        .catch((err) => {
+            response.status(403).json({msg:err});
+        });
+});
+
+router.route("/view/doctors/:username").get((request, response) => { //getting userdata through get request from the username
+    Doctor.find({username: request.params.username}, (err, result)=>{
         if(err) response.status(500).json({msg:err});
         response.json({
             data: result,
