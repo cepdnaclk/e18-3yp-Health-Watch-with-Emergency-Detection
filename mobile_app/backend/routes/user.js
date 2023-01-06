@@ -156,6 +156,20 @@ router.route("/view/contacts/:username").get((request, response) => { //getting 
     });
 });
 
+router.route("/delete/contacts/:username").patch((request,response)=>{ 
+   
+    Contact.findOneAndDelete( {username:request.params.username, contact_name:request.body.contact_name},
+        (err, result) => {
+            if(err) return response.status(500).json({msg: err});
+            const msg = {
+                msg: "Either relevant entry is not in the DB or it exists data is removed",
+                username:request.params.username,
+            };
+            return response.json(msg);
+        }
+    );
+});
+
 //adding doctors and viewing doctors
 router.route("/add/doctors/:username").post((request, response)=>{
     console.log("inside **doctors");
@@ -183,6 +197,20 @@ router.route("/view/doctors/:username").get((request, response) => { //getting u
             username: request.params.username,
         });
     });
+});
+
+router.route("/delete/doctors/:username").patch((request,response)=>{ 
+   
+    Doctor.findOneAndDelete( {username:request.params.username, doctor_name:request.body.doctor_name},
+        (err, result) => {
+            if(err) return response.status(500).json({msg: err});
+            const msg = {
+                msg: "Either relevant entry is not in the DB or it exists data is removed",
+                username:request.params.username,
+            };
+            return response.json(msg);
+        }
+    );
 });
 //get contacts and delete contacts and edit contacts
 
