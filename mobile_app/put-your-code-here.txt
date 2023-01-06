@@ -1,1 +1,2 @@
 
+kuduscript -y --node --sitePath mobile_app/backend
