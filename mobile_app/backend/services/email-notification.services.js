@@ -2,8 +2,9 @@ const {EMAIL_CONFIG} = require("../config/email.config");
 var nodemailer = require('nodemailer');
 
 async function SendNotification(emails, full_name, age, url) {
-
+  console.log(`in email: ${emails}`);
   for(i = 0; i < emails.length; i++){
+    console.log(`emails getting or not: ${emails[i]}`);
     writeEmails(emails[i], full_name, age, url);
   }
     

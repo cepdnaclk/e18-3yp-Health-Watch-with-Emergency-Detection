@@ -7,6 +7,7 @@ const { TableServiceClient, odata } = require("@azure/data-tables");
 const emailNotificationController = require("./services/email-notification.services");
 
 var tempData = []; //array to store the temp values for one minute
+var contactEmail = [];
 
 const port = process.env.port || 8080;
 const app = express();
@@ -70,6 +71,15 @@ app.listen(port, ()=>console.log(`port:${port} -> Server is running...`));
 
 var numCallings = 0;
 var average = 0;
+var contactEmail = [];
+
+axios.get(`https://medicare3ypnew.azurewebsites.net/user/view/contacts/jaya123`)
+      .then(response1 => {
+        for(j = 0; j<response1.data.data.length; j++){
+          contactEmail.push(response1.data.data[j].contacts.email);
+        }
+        console.log(contactEmail)})
+    .catch(error => console.log(error))
 
 setInterval(() => {
      numCallings ++; //keeping track of readings for one minute
@@ -84,6 +94,7 @@ setInterval(() => {
            tempData.push(response.data.temp);
            username = response.data.username;
            console.log(response.data.temp)
+
             if(numCallings == 6){ //here it should be 60 for 1 min entries if the data is taken by seconds
               for(i =0; i < tempData.length; i++){
                 average += tempData[i];
@@ -100,10 +111,20 @@ setInterval(() => {
             
                  // Print data
                 .then(response => {
+              //       axios.get(`https://medicare3ypnew.azurewebsites.net/view/contacts/${response.data.username}`)
+              //       .then(response1 => {
+              //           for(j = 0; j<response1.data.data.length; j++){
+              //             contactEmail.push(response1.data.data[j].contacts.email);
+              //           }
+              //           console.log(contactEmail)});
                   
-                  //user_link = response.data.xxxx
-                  emailNotificationController.SendNotification(["e18283@eng.pdn.ac.lk","jayathrimr@gmail.com"],response.data.data.fullname, response.data.data.age, String(user_link));
-                   console.log(response.data.data.fullname)
+              //     //user_link = response.data.xxxx
+
+              //     //****for testing commented: 
+              //           
+          //               console.log(response.data.data.fullname)
+          //           .catch(error => console.log('Error to email\n'))
+                    emailNotificationController.SendNotification(contactEmail,response.data.data.fullname, response.data.data.age, String(user_link));
                 })
                 // Print error message if occur
                 .catch(error => console.log('Error to fetch user details for email\n'))
