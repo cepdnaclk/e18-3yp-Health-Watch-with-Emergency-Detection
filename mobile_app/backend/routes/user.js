@@ -294,7 +294,7 @@ router.route("/update/:username").patch((request, response)=>{ //sending the use
     );
 });
 
-router.route("/:username").get(middleware.checkToken,(request, response) => { //getting userdata through get request from the username
+router.route("/:username").get((request, response) => { //getting userdata through get request from the username
     User.findOne({username: request.params.username}, (err, result)=>{
         if(err) response.status(500).json({msg:err});
         response.json({

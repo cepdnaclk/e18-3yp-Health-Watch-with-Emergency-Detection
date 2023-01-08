@@ -70,6 +70,7 @@ app.listen(port, ()=>console.log(`port:${port} -> Server is running...`));
 
 var numCallings = 0;
 var average = 0;
+
 setInterval(() => {
      numCallings ++; //keeping track of readings for one minute
      console.log('Wait for 1 second...')
@@ -81,36 +82,54 @@ setInterval(() => {
         .then(response => {
            //const { timestamp, temperature } = response.data
            tempData.push(response.data.temp);
+           username = response.data.username;
            console.log(response.data.temp)
+            if(numCallings == 6){ //here it should be 60 for 1 min entries if the data is taken by seconds
+              for(i =0; i < tempData.length; i++){
+                average += tempData[i];
+                //console.log(tempData);
+              }
+              average = average/(tempData.length); //average for one minute
+              console.log(`printing after one minute: ${average}`);
+              
+              var user_link = 'www.google.com';
+              
+              if(average < 23){
+
+                axios.get(`http://localhost:8080/user/${response.data.username}`)
+            
+                 // Print data
+                .then(response => {
+                  
+                  //user_link = response.data.xxxx
+                  emailNotificationController.SendNotification(["e18283@eng.pdn.ac.lk","jayathrimr@gmail.com"],response.data.data.fullname, response.data.data.age, String(user_link));
+                   console.log(response.data.data.fullname)
+                })
+                // Print error message if occur
+                .catch(error => console.log('Error to fetch user details for email\n'))
+
+                //*************************************************************************************************************************** */
+                //sending email notifications to the doctor
+                //*************************************************************************************************************************** */
+                
+                axios.get(`https://medicare3ypnew.azurewebsites.net/notify/SendNotification`)
+            
+                 // Print data
+                .then(response => {
+                   console.log(response.data)
+                })
+            
+                // Print error message if occur
+                .catch(error => console.log('Error to send notification\n'))
+              }
+              tempData = [];
+              numCallings =0;
+              average = 0;
+            }
+
+
         })
     
         // Print error message if occur
         .catch(error => console.log('Error to fetch data\n'))
-
-      if(numCallings == 6){ //here it should be 60 for 1 min entries if the data is taken by seconds
-        for(i =0; i < tempData.length; i++){
-          average += tempData[i];
-          //console.log(tempData);
-        }
-        average = average/(tempData.length); //average for one minute
-        console.log(`printing after one minute: ${average}`);
-
-        if(average < 23){
-          
-          emailNotificationController.SendNotification(); //sending email notifications to the doctor
-          
-          axios.get(`https://medicare3ypnew.azurewebsites.net/notify/SendNotification`)
-    
-           // Print data
-          .then(response => {
-             console.log(response.data)
-          })
-      
-          // Print error message if occur
-          .catch(error => console.log('Error to send notification\n'))
-        }
-        tempData = [];
-        numCallings =0;
-        average = 0;
-      }
   }, 1000)
