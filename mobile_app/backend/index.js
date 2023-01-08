@@ -4,6 +4,7 @@ const axios = require('axios')
 const { DefaultAzureCredential } = require('@azure/identity');
 const { BlobServiceClient } = require("@azure/storage-blob");
 const { TableServiceClient, odata } = require("@azure/data-tables");
+const emailNotificationController = require("./services/email-notification.services");
 
 var tempData = []; //array to store the temp values for one minute
 
@@ -71,7 +72,7 @@ var numCallings = 0;
 var average = 0;
 setInterval(() => {
      numCallings ++; //keeping track of readings for one minute
-     console.log('Wait for 2 second...')
+     console.log('Wait for 1 second...')
     
      // Make GET Request on every 2 second
      axios.get(`https://medicare3ypnew.azurewebsites.net/user/userTemp/jaya123`)
@@ -85,7 +86,8 @@ setInterval(() => {
     
         // Print error message if occur
         .catch(error => console.log('Error to fetch data\n'))
-      if(numCallings == 65){
+
+      if(numCallings == 6){ //here it should be 60 for 1 min entries if the data is taken by seconds
         for(i =0; i < tempData.length; i++){
           average += tempData[i];
           //console.log(tempData);
@@ -94,6 +96,9 @@ setInterval(() => {
         console.log(`printing after one minute: ${average}`);
 
         if(average < 23){
+          
+          emailNotificationController.SendNotification(); //sending email notifications to the doctor
+          
           axios.get(`https://medicare3ypnew.azurewebsites.net/notify/SendNotification`)
     
            // Print data
