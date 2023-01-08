@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/285260c7-e241-40e4-b7ba-500221a12358/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/medicare3ypnew",
+    "appService.deploySubpath": "mobile_app/backend"
+}

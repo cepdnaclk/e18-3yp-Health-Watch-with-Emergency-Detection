@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose =  require("mongoose");
+const axios = require('axios')
 const { DefaultAzureCredential } = require('@azure/identity');
 const { BlobServiceClient } = require("@azure/storage-blob");
 const { TableServiceClient, odata } = require("@azure/data-tables");
 
+var tempData = []; //array to store the temp values for one minute
 
 const port = process.env.port || 8080;
 const app = express();
@@ -50,6 +52,7 @@ const listFiles = async() =>{
 };
 
 
+
 app.use(express.json());
 const userRoute = require("./routes/user");
 const userRoute2 = require("./routes/userTemp");
@@ -63,3 +66,46 @@ app.route("/").get((request, response)=>response.send("First Rest API: updated")
 
 
 app.listen(port, ()=>console.log(`port:${port} -> Server is running...`));
+
+var numCallings = 0;
+var average = 0;
+setInterval(() => {
+     numCallings ++; //keeping track of readings for one minute
+     console.log('Wait for 2 second...')
+    
+     // Make GET Request on every 2 second
+     axios.get(`https://medicare3ypnew.azurewebsites.net/user/userTemp/jaya123`)
+    
+         // Print data
+        .then(response => {
+           //const { timestamp, temperature } = response.data
+           tempData.push(response.data.temp);
+           console.log(response.data.temp)
+        })
+    
+        // Print error message if occur
+        .catch(error => console.log('Error to fetch data\n'))
+      if(numCallings == 65){
+        for(i =0; i < tempData.length; i++){
+          average += tempData[i];
+          //console.log(tempData);
+        }
+        average = average/(tempData.length); //average for one minute
+        console.log(`printing after one minute: ${average}`);
+
+        if(average < 23){
+          axios.get(`https://medicare3ypnew.azurewebsites.net/notify/SendNotification`)
+    
+           // Print data
+          .then(response => {
+             console.log(response.data)
+          })
+      
+          // Print error message if occur
+          .catch(error => console.log('Error to send notification\n'))
+        }
+        tempData = [];
+        numCallings =0;
+        average = 0;
+      }
+  }, 1000)
