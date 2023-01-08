@@ -53,8 +53,10 @@ const listFiles = async() =>{
 app.use(express.json());
 const userRoute = require("./routes/user");
 const userRoute2 = require("./routes/userTemp");
+const userRoute3 = require("./routes/notification");
 
 app.use("/user",userRoute);
+app.use("/notify", userRoute3);
 app.use("/user/userTemp",userRoute2);
 
 app.route("/").get((request, response)=>response.send("First Rest API: updated"));

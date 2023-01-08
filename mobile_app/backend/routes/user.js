@@ -112,18 +112,30 @@ router.route("/view/reminders/:username").get((request, response) => { //getting
     });
 });
 
-router.route("/delete/reminders/:username").patch((request,response)=>{ 
+router.route("/delete/reminders/:objectID").post((request,response)=>{ 
    
-    Reminder.findOneAndDelete( {username:request.params.username, title:request.body.title},
-        (err, result) => {
-            if(err) return response.status(500).json({msg: err});
-            const msg = {
-                msg: "Either relevant entry is not in the DB or it exists data is removed",
-                username:request.params.username,
-            };
-            return response.json(msg);
-        }
-    );
+    // Reminder.findByIdAndRemove( request.params.objectID, (err, result) => {
+    //         if(err) return response.status(500).json({msg: err});
+    //         const msg = {
+    //             msg: "reminder deleted successfully",
+    //             username:request.params.username,
+    //         };
+    //         return response.json(msg);
+    //     });
+
+        Reminder.findByIdAndRemove(request.params.objectID, function (err, docs) {
+            if (err){
+                response.json({
+                    error: err,
+                });
+            }
+            else{
+                //print("Removed User : ", docs);
+                response.json({
+                    "Removed User : ": docs
+                });
+            }
+        });
 });
 
 //adding contacts under a particular username
@@ -138,7 +150,7 @@ router.route("/add/contacts/:username").post((request, response)=>{
     contact
         .save()
         .then(() =>{
-            console.log("reminder inserted");
+            console.log("contact inserted");
             response.status(200).json("ok");
         })
         .catch((err) => {
@@ -156,18 +168,21 @@ router.route("/view/contacts/:username").get((request, response) => { //getting 
     });
 });
 
-router.route("/delete/contacts/:username").patch((request,response)=>{ 
+router.route("/delete/contacts/:objectID").post((request,response)=>{ 
    
-    Contact.findOneAndDelete( {username:request.params.username, contact_name:request.body.contact_name},
-        (err, result) => {
-            if(err) return response.status(500).json({msg: err});
-            const msg = {
-                msg: "Either relevant entry is not in the DB or it exists data is removed",
-                username:request.params.username,
-            };
-            return response.json(msg);
+    Contact.findByIdAndRemove(request.params.objectID, function (err, docs) {
+        if (err){
+            response.json({
+                error: err,
+            });
         }
-    );
+        else{
+            //print("Removed User : ", docs);
+            response.json({
+                "Removed User : ": docs
+            });
+        }
+    });
 });
 
 //adding doctors and viewing doctors
@@ -199,18 +214,21 @@ router.route("/view/doctors/:username").get((request, response) => { //getting u
     });
 });
 
-router.route("/delete/doctors/:username").patch((request,response)=>{ 
+router.route("/delete/doctors/:objectID").post((request,response)=>{ 
    
-    Doctor.findOneAndDelete( {username:request.params.username, doctor_name:request.body.doctor_name},
-        (err, result) => {
-            if(err) return response.status(500).json({msg: err});
-            const msg = {
-                msg: "Either relevant entry is not in the DB or it exists data is removed",
-                username:request.params.username,
-            };
-            return response.json(msg);
+    Doctor.findByIdAndRemove(request.params.objectID, function (err, docs) {
+        if (err){
+            response.json({
+                error: err,
+            });
         }
-    );
+        else{
+            //print("Removed User : ", docs);
+            response.json({
+                "Removed User : ": docs
+            });
+        }
+    });
 });
 //get contacts and delete contacts and edit contacts
 
