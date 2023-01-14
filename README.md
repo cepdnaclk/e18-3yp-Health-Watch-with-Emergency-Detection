@@ -20,14 +20,16 @@ Now there is no specific range of age to get sick and to face accidents we all n
 
 # Our solution
 
-![image](./images/logo_medicare.png)
+![image](./images/xxx.png)
 
 Our solution is to implement a health watch which reads heart rate, Oxygen level of the blood and body temperature. Then our system has the ability to analyze the above data which come from above parameter and detect an emergency situation. Then the system can act as the user customizes.
 It automatically sends notifications along with his location to the caregivers and his or her personal doctors, added by the user.
 It also informs the user's personal doctors (optional)
 Also, it reminds user about his regular medications and other doctor check ups.
 ___
-# _What to know about your heart rate_
+# Medical review
+
+## _What to know about your heart rate_
 
 The normal Resting Heart Rate for a adult ranges from **60 to 100 beats per minute**. If you are not like an athlete your resting heart rate must be above 60. For trained athletes(physically fit) it is possible to have resting heart rate like 40. Other than that if someone has a resting heart rate below 60 which is called **bradycardia** and has a higher heart rate than 100 is called **tachycardia** they must consult their doctor since this can be an indication of an underlying problem.
 
@@ -54,9 +56,21 @@ When you can keep track of heart rate you can get a better idea about your fitne
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# _What is blood oxygen level_
+## _What is blood oxygen level_
 
 The blood oxygen level is the parameter of how much oxygen is carrying by the red blood cells. Mostly it is not necessary to measure this value in children and even in adults. This is only monitored when someone is showing symptoms like shortness in breath and chest pain. Specially for people with chronic health complications like heart diseases, monitoring oxygen level in blood can be really beneficial in case of understanding how the treatments are working and required changes in the medications.
 
+## Hardware
 
+To get the required parameters
+  - Heart rate
+  - Oxygen level of the blood
+  - Body temperature
+are going to be measured using respectively MAX30100 and LM35 sensors. Then as the microcontroller we are going to use the ATmega328P to handle the system. Arduino WiFi module ESP8266 seperate module with AT commands are going to commuinicate the sensor data to the cloud once paired with your mobile phone. To power up the system we are using 3.7 rechargable Li-Po battery and 18650 micro usb charging board is used.
+
+## Mobile Application
+
+A mobile app for both android and ios platformss are developed using flutter and all the required functionalities of the system it going to be handled via the mobile app. Like visuallizing parameters measured the through the sensors. To manage the emergency situations, the user have to add his or her personal doctors into the system and emergency contacts as well.
+
+Simple GUI is designed in a way that elders can easily use and in a teal color theme which is more suitable for the health sector. Apart from the iot device wearable health watch, this application going to be provide a service to keep track of your medications through reminders. 
 
