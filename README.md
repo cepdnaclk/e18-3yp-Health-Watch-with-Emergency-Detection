@@ -12,6 +12,7 @@ ___
 7. [Detailed Budget](#detailed-budget)
 8. [Links](#links)
 9. [Team](#team)
+10. [Contact us](#contact-us)
 
 # Background
 
@@ -100,5 +101,9 @@ Simple GUI is designed in a way that elders can easily use and in a teal color t
 - E/18/283 - Ranasinghe R.D.J.M.
 - E/18/412 - De Silva M.S.G.M.
 
-#### Ask from us - [medicare.3yp@gmail.com](mailto:medicare.3yp@gmail.com)
+## Contact us
+
+Got a question ❔
+
+#### Ask from us -  📩 [medicare.3yp@gmail.com](mailto:medicare.3yp@gmail.com)
 
