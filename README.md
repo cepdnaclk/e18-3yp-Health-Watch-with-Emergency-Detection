@@ -2,6 +2,17 @@ ___
 # Health Watch with Emergency Detection
 ___
 
+#### Table of Contents
+1. [Background](#background)
+2. [Our solution](#our-solution)
+3. [Medical review](#medical-review)
+4. [Hardware](#hardware)
+5. [Mobile application](#mobile-application)
+6. [Testing](#testing)
+7. [Detailed Budget](#detailed-budget)
+8. [Links](#links)
+9. [Team](#team)
+
 # Background
 
 - 524 deaths per 100 000 in Sri Lanka, due to CVDs
@@ -59,7 +70,7 @@ When you can keep track of heart rate you can get a better idea about your fitne
 ## _What is blood oxygen level_
 
 The blood oxygen level is the parameter of how much oxygen is carrying by the red blood cells. Mostly it is not necessary to measure this value in children and even in adults. This is only monitored when someone is showing symptoms like shortness in breath and chest pain. Specially for people with chronic health complications like heart diseases, monitoring oxygen level in blood can be really beneficial in case of understanding how the treatments are working and required changes in the medications.
-
+___
 ## Hardware
 
 To get the required parameters
@@ -73,4 +84,21 @@ are going to be measured using respectively MAX30100 and LM35 sensors. Then as t
 A mobile app for both android and ios platformss are developed using flutter and all the required functionalities of the system it going to be handled via the mobile app. Like visuallizing parameters measured the through the sensors. To manage the emergency situations, the user have to add his or her personal doctors into the system and emergency contacts as well.
 
 Simple GUI is designed in a way that elders can easily use and in a teal color theme which is more suitable for the health sector. Apart from the iot device wearable health watch, this application going to be provide a service to keep track of your medications through reminders. 
+
+## Testing
+
+## Detailed budget
+
+## Links
+
+- Project page - <a href="#"> ➡️ </a>
+- Full test plan - <a href="#"> ➡️ </a>
+
+## Team
+
+- E/18/276 - Rajasooriya J.M.
+- E/18/283 - Ranasinghe R.D.J.M.
+- E/18/412 - De Silva M.S.G.M.
+
+#### Ask from us - [medicare.3yp@gmail.com](mailto:medicare.3yp@gmail.com)
 
