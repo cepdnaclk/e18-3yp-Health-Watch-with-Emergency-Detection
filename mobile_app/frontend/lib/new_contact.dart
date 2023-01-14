@@ -4,7 +4,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:my_app_01/NetworkHandler.dart';
+import 'package:medicare1/NetworkHandler.dart';
 // import 'package:settings/login.dart';
 // import 'package:settings/models/contactitem.dart';
 // import 'package:settings/splash.dart';
@@ -113,7 +113,7 @@ class _newcontacts extends State<newcontacts> {
           icon: Icon(Icons.home),
           onPressed: () {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const CircularMenu()));
+                MaterialPageRoute(builder: (context) => CircularMenu()));
           },
         ),
       ),

@@ -4,13 +4,13 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:my_app_01/NetworkHandler.dart';
+import 'package:medicare1/NetworkHandler.dart';
 // import 'package:settings/login.dart';
 // import 'package:settings/models/contactitem.dart';
 // import 'package:settings/splash.dart';
 
 import 'Profile.dart';
-import 'addContacts.dart';
+import 'addDoctors.dart';
 import 'main.dart';
 import 'models/contactitem.dart';
 import 'navigation.dart';
@@ -80,7 +80,7 @@ class _Doctors extends State<Doctors> {
           context: context,
           builder: (_) {
             return AlertDialog(
-              content: addContacts(addContactData),
+              content: addDoctors(addContactData),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             );
@@ -113,179 +113,11 @@ class _Doctors extends State<Doctors> {
           icon: const Icon(Icons.health_and_safety_rounded),
           onPressed: () {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const CircularMenu()));
+                MaterialPageRoute(builder: (context) => CircularMenu()));
           },
         ),
       ),
-      body: Container(
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Card(
-              margin: EdgeInsets.all(4),
-              elevation: 8,
-              child: ListTile(
-                title: Text(
-                  contactList[index].contactName,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      contactList[index].email,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.black38,
-                      ),
-                    ),
-                    Text(
-                      contactList[index].phoneNo,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.black45,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                trailing: SizedBox(
-                  width: 75,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: IconButton(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => SimpleDialog(
-                                          title: const Text("Update Contact"),
-                                          children: [
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                hintText: contactList[index]
-                                                    .contactName,
-                                              ),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  txt1 = value;
-                                                });
-                                              },
-                                              controller: namecontroller,
-                                            ),
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    contactList[index].email,
-                                              ),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  txt2 = value;
-                                                });
-                                              },
-                                              controller: mailcontroller,
-                                            ),
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    contactList[index].phoneNo,
-                                              ),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  txt3 = value;
-                                                });
-                                              },
-                                              controller: phonecontroller,
-                                            ),
-                                            ElevatedButton(
-                                                onPressed: () {
-                                                  // Navigator.push(
-                                                  //   context,
-                                                  //   MaterialPageRoute(
-                                                  //     builder: (context) =>
-                                                  //         addContacts(
-                                                  //                 c: contactList[index]
-                                                  //         ),
-                                                  //   ),
-                                                  // );
-
-                                                  setState(() {
-                                                    contactList[index].set(
-                                                        namecontroller.text,
-                                                        mailcontroller.text,
-                                                        phonecontroller.text);
-                                                  });
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text("Update"))
-                                          ],
-                                        ));
-                              },
-                              // onPressed: () {
-                              //   showDialog(
-                              //       context: context,
-                              //       builder: (BuildContext context) {
-                              //         return AlertDialog(
-                              //           content: addContacts(
-                              //           contactList[index].contactName, ;
-
-                              //           ),
-                              //           shape: RoundedRectangleBorder(
-                              //               borderRadius:
-                              //                   BorderRadius.circular(10)),
-                              //         );
-                              //       });
-                              // },
-                              icon: Icon(Icons.edit))),
-                      Expanded(
-                          child: IconButton(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text("Alert"),
-                                        content: Text(
-                                            "Are you sure you want to delete this item?"),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                            child: Text("Cancel"),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                          ElevatedButton(
-                                            child: Text("Delete"),
-                                            onPressed: () {
-                                              setState(() {
-                                                contactList.removeAt(index);
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },
-
-                              // onPressed: () {
-                              //   setState(() {
-                              //     contactList.removeAt(index);
-                              //   });
-                              // },
-                              icon: Icon(Icons.delete)))
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-          itemCount: contactList.length,
-        ),
-      ),
+      body: Container(),
     );
   }
 }

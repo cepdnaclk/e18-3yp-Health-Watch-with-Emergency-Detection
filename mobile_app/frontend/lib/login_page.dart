@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_app_01/forgot_password.dart';
-import 'package:my_app_01/navigation.dart';
-import 'package:my_app_01/sign_up.dart';
-import 'package:my_app_01/sign_up.dart';
+import 'package:medicare1/forgot_password.dart';
+import 'package:medicare1/navigation.dart';
+import 'package:medicare1/sign_up.dart';
+import 'package:medicare1/sign_up.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'NetworkHandler.dart';
 
 // ignore: must_be_immutable
@@ -19,6 +20,12 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  @override
+  void initState(){
+    super.initState();
+    initPlatform();
+  }
+
   String message;
   _LoginPageState(this.message);
   @override
@@ -29,14 +36,14 @@ class _LoginPageState extends State<LoginPage> {
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("images/login.png"), fit: BoxFit.cover)),
+                  image: AssetImage("images/title4.png"), fit: BoxFit.cover)),
           child: Center(
             child: ListView(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               children: <Widget>[
                 const Padding(
-                  padding: EdgeInsets.only(top: 20, left: 23, right: 20),
+                  padding: EdgeInsets.only(top: 200, left: 23, right: 20),
                   child: Text(
                     "sign in to continue...",
                     style: TextStyle(
@@ -48,9 +55,13 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: TextField(
                     controller: username,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                    decoration:InputDecoration(
+                      
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(7.0)
+                      ),
                       labelText: 'Username',
+            
                     ),
                   ),
                 ),
@@ -60,8 +71,10 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     obscureText: true,
                     controller: password,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(7.0)
+                      ),
                       labelText: 'Password',
                     ),
                   ),
@@ -76,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.only(left: 100, right: 100),
                   child: ElevatedButton(
                       onPressed: () async {
                         showDialog(
@@ -114,20 +127,22 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CircularMenu()),
+                                builder: (context) => CircularMenu()),
                           );
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Colors.teal,
+                        shape:const StadiumBorder(),
                       ),
                       child: const Text('Sign In')),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.only(left: 100, right: 100),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.teal,
+                      shape:const StadiumBorder(),
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -153,6 +168,15 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> initPlatform() async{
+    await OneSignal.shared.setAppId("7602ad5b-32b0-4b91-9ea1-aee39e7a6775");
+    await OneSignal.shared.getDeviceState().then(
+      (value) => {
+        print(value!.userId),
+      },
     );
   }
 }

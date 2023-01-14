@@ -22,22 +22,24 @@ class _profile extends State<profile> {
 
   // addContacts(this.addcontact);
   bool isObsPw = true;
-  String uName = "sample username";
-  String uAge = "00";
-  String uEmail = "sample@email.com";
-  String uPhoneNo = "0XX XXX XXXX";
-  String uTown = "ABC";
-  String uMed = "condition1, condition2";
+  String uName = "HazelGrace";
+  String uAge = "16";
+  String uEmail = "hazel_gl@gmail.com";
+  String uPhoneNo = "215 XXX XXXX";
+  String uTown = "24, Main Street, South Bend,";
+  String uMed = "Thyroid cancer , Trouble breathing";
+  String uWeight = "50";
+  String uHeight = "1.5";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.home)),
-        title: const Text("Profile"),
-      ),
+      // appBar: AppBar(
+      //   leading: IconButton(onPressed: () {}, icon: const Icon(Icons.home)),
+      //   title: const Text("Profile"),
+      // ),
       body: Container(
-        padding: const EdgeInsets.only(left: 15, top: 20, right: 15),
+        padding: const EdgeInsets.only(left: 15, top: 50, right: 15),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -45,61 +47,70 @@ class _profile extends State<profile> {
           child: ListView(
             // ignore: duplicate_ignore
             children: [
-              Center(
-                child: Stack(
-                  children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 4, color: Colors.white),
-                        boxShadow: [
-                          BoxShadow(
-                              spreadRadius: 2,
-                              blurRadius: 10,
-                              color: Colors.black.withOpacity(0.1))
-                        ],
-                        shape: BoxShape.circle,
-                        image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/profile.jpg'),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(width: 4, color: Colors.white),
-                            color: Colors.green),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              Center(child: const Icon(
+                  Icons.account_circle_outlined,
+                  size: 50,
+                )),
+              // Center(
+              //   child: Stack(
+              //     children: [
+              //       Container(
+              //         width: 130,
+              //         height: 130,
+              //         decoration: BoxDecoration(
+              //           border: Border.all(width: 4, color: Colors.white),
+              //           boxShadow: [
+              //             BoxShadow(
+              //                 spreadRadius: 2,
+              //                 blurRadius: 10,
+              //                 color: Colors.black.withOpacity(0.1))
+              //           ],
+              //           shape: BoxShape.circle,
+              //           image: const DecorationImage(
+              //             fit: BoxFit.cover,
+              //             image: AssetImage('assets/profile.jpg'),
+              //           ),
+              //         ),
+              //       ),
+              //       Positioned(
+              //         bottom: 0,
+              //         right: 0,
+              //         child: Container(
+              //           height: 40,
+              //           width: 40,
+              //           decoration: BoxDecoration(
+              //               shape: BoxShape.circle,
+              //               border: Border.all(width: 4, color: Colors.white),
+              //               color: Colors.green),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
               const SizedBox(
                 height: 30,
               ),
               // ignore: unnecessary_string_interpolations
-              buildTextField("Full Name", '$uName', false),
+              buildTextField("Full Name:", '$uName', false),
               // ignore: unnecessary_string_interpolations
-              buildTextField("Age", '$uAge', false),
+              buildTextField("Email:", '$uEmail', false),
               // ignore: unnecessary_string_interpolations
-              buildTextField("Email", '$uEmail', false),
+              buildTextField("Contact number:", '$uPhoneNo', false),
               // ignore: unnecessary_string_interpolations
-              buildTextField("Phone No.", '$uPhoneNo', false),
+              buildTextField("Current town:", '$uTown', false),
               // ignore: unnecessary_string_interpolations
-              buildTextField("Current Town", '$uTown', false),
-              buildTextField("Any past medical conditions", '$uMed', false),
+              buildTextField("Age:", '$uAge', false),
+              // ignore: unnecessary_string_interpolations
+              buildTextField("Weight(kg):", '$uWeight', false),
+              // ignore: unnecessary_string_interpolations
+              buildTextField("Height(m):", '$uHeight', false),
+              
+              buildTextField("Medical conditions:", '$uMed', false),
               const SizedBox(
-                height: 30,
+                height: 5,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -108,17 +119,17 @@ class _profile extends State<profile> {
                       Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CircularMenu()),
+                                builder: (context) => CircularMenu()),
                           );
                     },
                     style: ElevatedButton.styleFrom(
                         // ignore: deprecated_member_use
-                        primary: Colors.blue,
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        primary: Colors.teal,
+                        padding: const EdgeInsets.symmetric(horizontal: 70),
                         shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                     child: const Text(
-                      "save",
+                      "Save",
                       style: TextStyle(
                           fontSize: 15, letterSpacing: 2, color: Colors.white),
                     ),

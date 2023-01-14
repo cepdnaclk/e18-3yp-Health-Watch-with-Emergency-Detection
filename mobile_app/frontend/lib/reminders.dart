@@ -3,9 +3,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:my_app_01/NetworkHandler.dart';
-import 'package:my_app_01/navigation.dart';
-import 'package:my_app_01/view_all_reminders.dart';
+import 'package:medicare1/NetworkHandler.dart';
+import 'package:medicare1/navigation.dart';
+import 'package:medicare1/view_all_reminders.dart';
 
 class Reminders extends StatefulWidget {
   const Reminders({super.key});
@@ -23,28 +23,31 @@ class _RemindersState extends State<Reminders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Reminders'),
+          title: const Text(''),
+          backgroundColor: Colors.white..withOpacity(0.2), //You can make this transparent
+                    elevation: 0.0, //No shadow
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.message_rounded),
+                icon: const Icon(Icons.navigate_before,color: Color.fromARGB(255, 17, 77, 71)),
                 onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const CircularMenu()));
+                          builder: (context) => CircularMenu()));
                 },
               );
             },
           )),
       body: Container(
+        alignment: Alignment.topLeft,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("images/addReminder.png"),
+                image: AssetImage("images/reminders2.png"),
                 fit: BoxFit.cover)),
         child: ListView(
           children: <Widget>[
-            const Padding(padding: EdgeInsets.only(top: 100)),
+            const Padding(padding: EdgeInsets.only(top: 178)),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: TextField(
@@ -55,7 +58,9 @@ class _RemindersState extends State<Reminders> {
                 ),
               ),
             ),
+            const SizedBox(height: 40),
             Center(
+              // padding: const EdgeInsets.only(left: 20, right: 20),
               child: DropdownButton(
                 value: frequency,
                 items: const [
@@ -187,10 +192,16 @@ class _RemindersState extends State<Reminders> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 70),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 6, 139, 139),
+                    shape:const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                    )),
                 onPressed: () async {
                   showDialog(
                       context: context,
@@ -219,10 +230,11 @@ class _RemindersState extends State<Reminders> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 70),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color.fromARGB(255, 6, 139, 139),
+                    shape:const StadiumBorder(),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
                     )),

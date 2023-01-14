@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:medicare1/NetworkHandler.dart';
+import 'package:medicare1/viewAllContacts.dart';
 // import 'package:settings/models/contactitem.dart';
 
 import 'main.dart';
@@ -16,6 +18,8 @@ class addContacts extends StatefulWidget {
 }
 
 class _addContactState extends State<addContacts> {
+    NetworkHandler networkHandler = NetworkHandler();
+
   final contactItem c =
       new contactItem('Contact Name', 'Email', 'Phone Number');
 
@@ -55,7 +59,7 @@ class _addContactState extends State<addContacts> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
-                color: Colors.black,
+                color: Color.fromARGB(255, 5, 104, 99),
               ),
             ),
             SizedBox(height: 10),
@@ -64,13 +68,38 @@ class _addContactState extends State<addContacts> {
             buildTextField('$contactNumber', phoneNoController),
             SizedBox(height: 10),
             ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  showDialog(
+                            context: context,
+                            builder: (builder) {
+                              return const Center(child: CircularProgressIndicator());
+                        });
+                  Map<String, String> data = {
+                    "contact_name": contactNameController.text,
+                    "email": emailController.text,
+                    "phone_number": phoneNoController.text,
+                  };
+                  Map<String, Map<String, String>> data1 = {"contacts": data};
+                  String username = "jaya123"; // ignore: unused_local_variable
+                  print(data1);
+                  var tokenKeeper = await networkHandler.addContactList('user/add/contacts/$username', data1);
+                  
                   final contactitem = contactItem(contactNameController.text,
                       emailController.text, phoneNoController.text);
 
                   widget.addcontact(contactitem);
+                  String response = await networkHandler
+                      .getReminders("user/view/contacts/jaya123");
                   Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ViewAllContacts(response)));
                 },
+                style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal,
+                        shape:const StadiumBorder(),
+                      ),
                 child: Text('Add Conatct'))
           ],
         ),

@@ -1,15 +1,19 @@
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app_01/doctors.dart';
-import 'package:my_app_01/login_page.dart';
-import 'package:my_app_01/preview.dart';
-import 'package:my_app_01/reminders.dart';
+import 'package:medicare1/NetworkHandler.dart';
+//import 'package:medicare1/doctors.dart';
+import 'package:medicare1/login_page.dart';
+import 'package:medicare1/preview.dart';
+import 'package:medicare1/reminders.dart';
+import 'package:medicare1/viewAllContacts.dart';
+import 'package:medicare1/viewAllDoctors.dart';
 
 import 'new_contact.dart';
 
 class CircularMenu extends StatelessWidget {
-  const CircularMenu({super.key});
-
+  CircularMenu({super.key});
+  NetworkHandler networkHandler = NetworkHandler();
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,15 +22,15 @@ class CircularMenu extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("images/nav2.png"), fit: BoxFit.cover)),
+                  image: AssetImage("images/title2.png"), fit: BoxFit.cover)),
           child: const Center(
             child: Text(""),
           ),
         ),
         floatingActionButton: FabCircularMenu(
-          fabOpenColor: const Color.fromARGB(255, 69, 106, 255),
-          fabCloseColor: const Color.fromARGB(255, 151, 153, 255),
-          ringColor: const Color.fromARGB(255, 116, 197, 255),
+          fabOpenColor: Color.fromARGB(255, 7, 204, 211),
+          fabCloseColor: Color.fromARGB(255, 2, 224, 224),
+          ringColor: Color.fromARGB(255, 28, 204, 189).withOpacity(0.3),
           children: [
             InkWell(
                 child: const Icon(
@@ -53,23 +57,35 @@ class CircularMenu extends StatelessWidget {
                   Icons.contact_phone,
                   size: 50,
                 ),
-                onTap: () {
+                onTap: () async {
+                  String response = await networkHandler
+                      .getReminders("user/view/contacts/jaya123");
+                    print(response);
+                  
+                  
+                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (contex) => newcontacts()));
-                }),
+                          builder: (context) => ViewAllContacts(response)));
+                  }),
             InkWell(
                 child: const Icon(
                   Icons.health_and_safety,
                   size: 50,
                 ),
-                onTap: () {
+                onTap: () async {
+                  String response = await networkHandler
+                      .getReminders("user/view/doctors/jaya123");
+                    print(response);
+                  
+                  
+                  Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (contex) => Doctors()));
-                }),
+                          builder: (context) => ViewAllDoctors(response)));
+                  }),
           ],
         ),
       ),

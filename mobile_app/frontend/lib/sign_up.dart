@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app_01/Profile.dart';
+import 'package:medicare1/Profile.dart';
 
 import 'NetworkHandler.dart';
 import 'login_page.dart';
@@ -52,7 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("images/signup.png"), fit: BoxFit.cover)),
+                  image: AssetImage("images/title4.png"), fit: BoxFit.cover)),
           child: Form(
             autovalidateMode: AutovalidateMode.always,
             child: Center(
@@ -62,10 +62,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 150, left: 23, right: 20),
-                    child: Text(
-                      "Welcome !",
-                      style: TextStyle(fontSize: 25),
-                    ),
+                    // child: Text(
+                    //   "Welcome !",
+                    //   style: TextStyle(fontSize: 25),
+                    // ),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 20, left: 23, right: 20),
@@ -114,10 +114,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 80),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Colors.teal,
+                        shape:const StadiumBorder(),
                       ),
                       onPressed: () async {
                         String? checkValidityUserName = validateUserName(username.text);

@@ -3,8 +3,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:my_app_01/NetworkHandler.dart';
-import 'package:my_app_01/reminders.dart';
+import 'package:medicare1/NetworkHandler.dart';
+import 'package:medicare1/reminders.dart';
 
 // ignore: must_be_immutable
 class ViewAllReminders extends StatefulWidget {
@@ -51,8 +51,9 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
         // ignore: unused_local_variable
         var item = response[index];
         var r = json.decode(response);
-        String userName = r["username"];
-        print("username: $userName");
+        print("test : $r");
+        String objectId= r["data"][index]["_id"];
+        print("objectId: $objectId");
         showDialog(
             barrierDismissible: false,
             context: context,
@@ -71,7 +72,7 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
                             });
                         Map<String, String> data = {"title": item};
                         int deleteResponse = await networkHandler
-                            .deleteReminders("user/delete/reminders/jaya123",data);
+                            .deleteWithID("user/delete/reminders/$objectId");
                         String response = await networkHandler
                             .getReminders("user/view/reminders/jaya123");
                         // ignore: use_build_context_synchronously
