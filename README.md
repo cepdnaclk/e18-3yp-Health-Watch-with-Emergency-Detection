@@ -32,7 +32,6 @@ Now there is no specific range of age to get sick and to face accidents we all n
 
 # Our solution
 
-![image](./images/xxx.png)
 
 Our solution is to implement a health watch which reads heart rate, Oxygen level of the blood and body temperature. Then our system has the ability to analyze the above data which come from above parameter and detect an emergency situation. Then the system can act as the user customizes.
 It automatically sends notifications along with his location to the caregivers and his or her personal doctors, added by the user.
