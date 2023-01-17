@@ -9,18 +9,21 @@ import 'main.dart';
 import 'models/contactitem.dart';
 
 class addDoctors extends StatefulWidget {
-  
+  String username;
   final Function(contactItem) addcontact;
 
-  addDoctors(this.addcontact);
+  addDoctors(this.username,this.addcontact);
 
   @override
-  _addDoctorstate createState() => _addDoctorstate();
+  _addDoctorstate createState() => _addDoctorstate(username);
 }
 
 class _addDoctorstate extends State<addDoctors> {
+  String username;
   NetworkHandler networkHandler = NetworkHandler();
   final contactItem c = new contactItem('Name', 'Email', 'Phone Number');
+  
+  _addDoctorstate(this.username);
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +84,11 @@ class _addDoctorstate extends State<addDoctors> {
                   };
 
                   Map<String, Map<String, String>> data1 = {"doctors": data};
-                  String username = "jaya123"; // ignore: unused_local_variable
+                  
                   print(data1);
                   var tokenKeeper = await networkHandler.addDoctors('user/add/doctors/$username', data1);
                   String response = await networkHandler
-                      .getReminders("user/view/doctors/jaya123");
+                      .getReminders("user/view/doctors/$username");
                     print(response);
                   final contactitem = contactItem(contactNameController.text,
                       emailController.text, phoneNoController.text);
@@ -95,7 +98,7 @@ class _addDoctorstate extends State<addDoctors> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ViewAllDoctors(response)));
+                          builder: (context) => ViewAllDoctors(username,response)));
                 
                 },
                 style: ElevatedButton.styleFrom(

@@ -10,16 +10,17 @@ import 'package:medicare1/navigation.dart';
 
 class ViewAllContacts extends StatefulWidget {
   var response;
-
+  String username;
   //List taskData =[]; 
-  ViewAllContacts(this.response, {super.key});
+  ViewAllContacts(this.username,this.response, {super.key});
 
   @override
-  State<ViewAllContacts> createState() => _ViewAllContactsState(response);
+  State<ViewAllContacts> createState() => _ViewAllContactsState(username,response);
 }
 
 class _ViewAllContactsState extends State<ViewAllContacts> with TickerProviderStateMixin{
   NetworkHandler networkHandler = NetworkHandler();
+  String username;
   late List<String> tasks;
   List<contactItem> contactList = [];
 
@@ -27,14 +28,14 @@ class _ViewAllContactsState extends State<ViewAllContacts> with TickerProviderSt
   late List taskDataList =[];
   var response;
   var listLength = 0;
-  _ViewAllContactsState(this.response);
+  _ViewAllContactsState(this.username,this.response);
 
 
 
   @override
   void initState() {
     super.initState();
-    //String response = await networkHandler.getReminders("user/view/contacts/jaya123");
+    
     print(response);
     var r = json.decode(response);
     listLength = getBoxLength(r);
@@ -83,12 +84,12 @@ class _ViewAllContactsState extends State<ViewAllContacts> with TickerProviderSt
                   int deleteResponse = await networkHandler
                             .deleteWithID("user/delete/contacts/$objectId");
                   String response = await networkHandler
-                            .getReminders("user/view/contacts/jaya123");
+                            .getReminders("user/view/contacts/$username");
                   Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllContacts(response)));
+                                    ViewAllContacts(username,response)));
                   //deleteData(index);
                   //Navigator.pushNamed(context, '/view');
                 },
@@ -128,7 +129,7 @@ class _ViewAllContactsState extends State<ViewAllContacts> with TickerProviderSt
           context: context,
           builder: (_) {
             return AlertDialog(
-              content: addContacts(addContactData),
+              content: addContacts(username,addContactData),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             );
@@ -155,7 +156,7 @@ class _ViewAllContactsState extends State<ViewAllContacts> with TickerProviderSt
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CircularMenu()));
+                          builder: (context) => CircularMenu(username)));
                 },
               );
             },

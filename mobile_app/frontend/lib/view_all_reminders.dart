@@ -10,18 +10,20 @@ import 'package:medicare1/reminders.dart';
 class ViewAllReminders extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
   var response;
-  ViewAllReminders(this.response, {super.key});
+  String username;
+  ViewAllReminders(this.username,this.response, {super.key});
 
   @override
-  State<ViewAllReminders> createState() => _ViewAllRemindersState(response);
+  State<ViewAllReminders> createState() => _ViewAllRemindersState(username, response);
 }
 
 class _ViewAllRemindersState extends State<ViewAllReminders> {
   NetworkHandler networkHandler = NetworkHandler();
   late List<String> reminders = [];
+  String username;
   // ignore: prefer_typing_uninitialized_variables
   var response;
-  _ViewAllRemindersState(this.response);
+  _ViewAllRemindersState(this.username,this.response);
 
   @override
   void initState() {
@@ -74,7 +76,7 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
                         int deleteResponse = await networkHandler
                             .deleteWithID("user/delete/reminders/$objectId");
                         String response = await networkHandler
-                            .getReminders("user/view/reminders/jaya123");
+                            .getReminders("user/view/reminders/$username");
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                         // ignore: avoid_print
@@ -84,7 +86,7 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllReminders(response)));
+                                    ViewAllReminders(username,response)));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -103,7 +105,7 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
                             });
                         // code to delete item
                         String response = await networkHandler
-                            .getReminders("user/view/reminders/jaya123");
+                            .getReminders("user/view/reminders/$username");
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                         print("confirmation no");
@@ -112,7 +114,7 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllReminders(response)));
+                                    ViewAllReminders(username,response)));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -128,10 +130,17 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
       background: deleteBgItem(),
       child: Card(
         child: ListTile(
+          shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10))),
+          tileColor: Color.fromARGB(98, 50, 150, 133),
           trailing:
-              const Icon(Icons.delete, color: Color.fromARGB(255, 255, 77, 77)),
+              const Icon(Icons.delete, color: Color.fromARGB(255, 116, 5, 5)),
           leading: const Icon(Icons.verified,
-              color: Color.fromARGB(255, 0, 216, 22)),
+              color: Color.fromARGB(255, 17, 77, 71)),
           title: Text(reminders[index]),
         ),
       ),
@@ -154,22 +163,27 @@ class _ViewAllRemindersState extends State<ViewAllReminders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Reminders"),
+          title: const Text(''),
+          backgroundColor: Color.fromARGB(255, 255, 255, 255), //You can make this transparent
+                    elevation: 0.0, //No shadow
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                icon: const Icon(Icons.message),
+                icon: const Icon(Icons.navigate_before,color: Color.fromARGB(255, 17, 77, 71)),
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Reminders()));
+                          builder: (context) => Reminders(username)));
                 },
               );
             },
           )),
-      body: Container(
-        color: const Color.fromARGB(255, 167, 204, 255),
+      body: Container(padding: const EdgeInsets.only(left: 10, top: 120, right: 10),
+        decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/reminders2.png"),
+                    fit: BoxFit.cover)),
         child: showList(),
       ),
     );

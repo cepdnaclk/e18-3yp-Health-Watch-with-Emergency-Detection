@@ -8,11 +8,12 @@ import 'navigation.dart';
 
 // ignore: camel_case_types
 class profile extends StatefulWidget {
-  const profile({super.key});
+  String username;
+  profile(this.username, {super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _profile createState() => _profile();
+  _profile createState() => _profile(username);
 }
 
 // ignore: camel_case_types
@@ -30,6 +31,8 @@ class _profile extends State<profile> {
   String uMed = "Thyroid cancer , Trouble breathing";
   String uWeight = "50";
   String uHeight = "1.5";
+  String username;
+  _profile(this.username);
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +122,7 @@ class _profile extends State<profile> {
                       Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CircularMenu()),
+                                builder: (context) => CircularMenu(username)),
                           );
                     },
                     style: ElevatedButton.styleFrom(

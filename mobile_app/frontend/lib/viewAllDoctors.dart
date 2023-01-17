@@ -10,31 +10,31 @@ import 'package:medicare1/navigation.dart';
 
 class ViewAllDoctors extends StatefulWidget {
   var response;
+  String username;
 
   //List taskData =[]; 
-  ViewAllDoctors(this.response, {super.key});
+  ViewAllDoctors(this.username,this.response, {super.key});
 
   @override
-  State<ViewAllDoctors> createState() => _ViewAllDoctorsState(response);
+  State<ViewAllDoctors> createState() => _ViewAllDoctorsState(username, response);
 }
 
 class _ViewAllDoctorsState extends State<ViewAllDoctors> with TickerProviderStateMixin{
   NetworkHandler networkHandler = NetworkHandler();
   late List<String> tasks;
   List<contactItem> contactList = [];
-
+  String username;
   late Map items;
   late List taskDataList =[];
   var response;
   var listLength = 0;
-  _ViewAllDoctorsState(this.response);
+  _ViewAllDoctorsState(this.username,this.response);
 
 
 
   @override
   void initState() {
     super.initState();
-    //String response = await networkHandler.getReminders("user/view/doctors/jaya123");
     print(response);
     var r = json.decode(response);
     listLength = getBoxLength(r);
@@ -83,12 +83,12 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors> with TickerProviderStat
                   int deleteResponse = await networkHandler
                             .deleteWithID("user/delete/doctors/$objectId");
                   String response = await networkHandler
-                            .getReminders("user/view/doctors/jaya123");
+                            .getReminders("user/view/doctors/$username");
                   Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllDoctors(response)));
+                                    ViewAllDoctors(username, response)));
                   //deleteData(index);
                   //Navigator.pushNamed(context, '/view');
                 },
@@ -128,7 +128,7 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors> with TickerProviderStat
           context: context,
           builder: (_) {
             return AlertDialog(
-              content: addDoctors(addContactData),
+              content: addDoctors(username,addContactData),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             );
@@ -155,7 +155,7 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors> with TickerProviderStat
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CircularMenu()));
+                          builder: (context) => CircularMenu(username)));
                 },
               );
             },

@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:medicare1/NetworkHandler.dart';
 //import 'package:medicare1/doctors.dart';
 import 'package:medicare1/login_page.dart';
+import 'package:medicare1/monitordDashboard.dart';
 import 'package:medicare1/preview.dart';
 import 'package:medicare1/reminders.dart';
 import 'package:medicare1/viewAllContacts.dart';
 import 'package:medicare1/viewAllDoctors.dart';
+import 'package:medicare1/monitordDashboard.dart';
 
 import 'new_contact.dart';
 
 class CircularMenu extends StatelessWidget {
-  CircularMenu({super.key});
+  String username;
+  CircularMenu(this.username,{super.key});
   NetworkHandler networkHandler = NetworkHandler();
   
   @override
@@ -39,7 +42,7 @@ class CircularMenu extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Preview()));
+                      MaterialPageRoute(builder: (context) => Preview(username)));
                 }),
             InkWell(
                 child: const Icon(
@@ -50,7 +53,7 @@ class CircularMenu extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Reminders()));
+                          builder: (context) => Reminders(username)));
                 }),
             InkWell(
                 child: const Icon(
@@ -59,7 +62,7 @@ class CircularMenu extends StatelessWidget {
                 ),
                 onTap: () async {
                   String response = await networkHandler
-                      .getReminders("user/view/contacts/jaya123");
+                      .getReminders("user/view/contacts/$username");
                     print(response);
                   
                   
@@ -67,7 +70,7 @@ class CircularMenu extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ViewAllContacts(response)));
+                          builder: (context) => ViewAllContacts(username,response)));
                   }),
             InkWell(
                 child: const Icon(
@@ -76,7 +79,7 @@ class CircularMenu extends StatelessWidget {
                 ),
                 onTap: () async {
                   String response = await networkHandler
-                      .getReminders("user/view/doctors/jaya123");
+                      .getReminders("user/view/doctors/$username");
                     print(response);
                   
                   
@@ -84,7 +87,7 @@ class CircularMenu extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ViewAllDoctors(response)));
+                          builder: (context) => ViewAllDoctors(username,response)));
                   }),
           ],
         ),

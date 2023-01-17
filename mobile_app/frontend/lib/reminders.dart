@@ -8,17 +8,23 @@ import 'package:medicare1/navigation.dart';
 import 'package:medicare1/view_all_reminders.dart';
 
 class Reminders extends StatefulWidget {
-  const Reminders({super.key});
+  String username;
+  Reminders(this.username,{super.key});
 
   @override
-  State<Reminders> createState() => _RemindersState();
+  State<Reminders> createState() => _RemindersState(username);
 }
 
 class _RemindersState extends State<Reminders> {
+  String username;
+  _RemindersState(this.username);
+
   NetworkHandler networkHandler = NetworkHandler();
   TextEditingController remind = TextEditingController();
   String frequency = 'Daily';
   String time = '12';
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +40,7 @@ class _RemindersState extends State<Reminders> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CircularMenu()));
+                          builder: (context) => CircularMenu(username)));
                 },
               );
             },
@@ -217,7 +223,7 @@ class _RemindersState extends State<Reminders> {
                     "time": time,
                   };
                   Map<String, Map<String, String>> data1 = {"reminders": data};
-                  String username = "jaya123"; // ignore: unused_local_variable
+                  
                   print(data1);
                   var tokenKeeper = await networkHandler.updateReminders(
                       'user/update/reminders/$username', data1);
@@ -245,14 +251,14 @@ class _RemindersState extends State<Reminders> {
                               return const Center(child: CircularProgressIndicator());
                   });
                   String response = await networkHandler
-                      .getReminders("user/view/reminders/jaya123");
+                      .getReminders("user/view/reminders/$username");
                   // ignore: use_build_context_synchronously
                   Navigator.of(context).pop();
                   // ignore: use_build_context_synchronously
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ViewAllReminders(response)));
+                          builder: (context) => ViewAllReminders(username,response)));
                 },
                 child: const Text('VIEW REMINDERS'),
               ),

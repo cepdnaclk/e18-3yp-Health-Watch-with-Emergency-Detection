@@ -10,10 +10,11 @@ import 'package:medicare1/doctors.dart';
 class ViewAllDoctors1 extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
   var response;
-  ViewAllDoctors1(this.response, {super.key});
+  String username;
+  ViewAllDoctors1(this.username,this.response, {super.key});
 
   @override
-  State<ViewAllDoctors1> createState() => _ViewAllDoctorsState(response);
+  State<ViewAllDoctors1> createState() => _ViewAllDoctorsState(username,response);
 }
 
 class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
@@ -22,7 +23,8 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
   late List<String> doctordata = [];
   // ignore: prefer_typing_uninitialized_variables
   var response;
-  _ViewAllDoctorsState(this.response);
+  String username;
+  _ViewAllDoctorsState(this.username,this.response);
 
   @override
   void initState() {
@@ -76,10 +78,9 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
                                   child: CircularProgressIndicator());
                             });
                         Map<String, String> data = {"title": item};
-                        // int deleteResponse = await networkHandler
-                        //     .deletedoctors("user/delete/doctors/jaya123",data);
+                        
                         String response = await networkHandler
-                            .getContacts("user/view/doctors/jaya123");
+                            .getContacts("user/view/doctors/$username");
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                         // ignore: avoid_print
@@ -89,7 +90,7 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllDoctors1(response)));
+                                    ViewAllDoctors1(username,response)));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -108,7 +109,7 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
                             });
                         // code to delete item
                         String response = await networkHandler
-                            .getContacts("user/view/doctors/jaya123");
+                            .getContacts("user/view/doctors/$username");
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                         print("confirmation no");
@@ -117,7 +118,7 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ViewAllDoctors1(response)));
+                                    ViewAllDoctors1(username,response)));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -168,7 +169,7 @@ class _ViewAllDoctorsState extends State<ViewAllDoctors1> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Doctors()));
+                          builder: (context) => Doctors('')));
                 },
               );
             },

@@ -16,30 +16,19 @@ import 'models/contactitem.dart';
 import 'navigation.dart';
 
 class Doctors extends StatefulWidget {
+  String username;
+  Doctors(this.username, {super.key});
   @override
-  _Doctors createState() => _Doctors();
+  _Doctors createState() => _Doctors(username);
 }
 
 class _Doctors extends State<Doctors> {
+  String username;
+    _Doctors(this.username);
+
   NetworkHandler networkHandler = NetworkHandler();
   List<contactItem> contactList = [];
 
-  // @override
-  // Future<void> initState() async {
-  //   super.initState();
-  //   var response =
-  //       await networkHandler.getContacts("user/view/contacts/jaya123");
-  //   print(response);
-  //   var r = json.decode(response);
-  //   final length = r["data"].length;
-  //   for (int i = 0; i < length; i++) {
-  //     // ignore: unnecessary_new
-  //     contactList.add(new contactItem(
-  //         r["data"][i]["contacts"]["contact_name"],
-  //         r["data"][i]["contacts"]["email"],
-  //         r["data"][i]["contacts"]["phone_number"]));
-  //   }
-  // }
 
   String txt1 = "";
   String txt2 = "";
@@ -48,7 +37,8 @@ class _Doctors extends State<Doctors> {
   final namecontroller = TextEditingController();
   final mailcontroller = TextEditingController();
   final phonecontroller = TextEditingController();
-
+  
+ 
   // ignore: unused_element
   void _setText() {
     setState(() {
@@ -80,7 +70,7 @@ class _Doctors extends State<Doctors> {
           context: context,
           builder: (_) {
             return AlertDialog(
-              content: addDoctors(addContactData),
+              content: addDoctors(username,addContactData),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             );
@@ -113,7 +103,7 @@ class _Doctors extends State<Doctors> {
           icon: const Icon(Icons.health_and_safety_rounded),
           onPressed: () {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => CircularMenu()));
+                MaterialPageRoute(builder: (context) => CircularMenu(username)));
           },
         ),
       ),

@@ -158,11 +158,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   builder: (context) =>
                                       SignUpPage("user name already exist!")));
                         } else {
+                          
                           // ignore: use_build_context_synchronously
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => profile()),
+                                builder: (context) => profile(username.text)),
                           );
                         }
                       },

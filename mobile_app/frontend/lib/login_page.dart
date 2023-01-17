@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:medicare1/dashboard_screen.dart';
 import 'package:medicare1/forgot_password.dart';
+import 'package:medicare1/location_page.dart';
 import 'package:medicare1/navigation.dart';
 import 'package:medicare1/sign_up.dart';
 import 'package:medicare1/sign_up.dart';
@@ -9,6 +13,9 @@ import 'NetworkHandler.dart';
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
   String s;
+  
+  
+
   LoginPage(this.s, {super.key});
   @override
   // ignore: no_logic_in_create_state
@@ -16,16 +23,42 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  String heartRateCheck="In the range";
+  String oxyRangeCheck ="In the range";
+  
   NetworkHandler networkHandler = NetworkHandler();
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
+  
 
   @override
   void initState(){
     super.initState();
     initPlatform();
+    getReadings();
   }
+Future<void> getReadings() async {
+  String response1Temp =
+        await networkHandler.getPreview("https://api.thingspeak.com/channels/2005890/feeds.json?api_key=HBYZ9SP8D7EB5QSI&results=1");
+    
+    var r = json.decode(response1Temp);
+    var r1 = r["feeds"][0]["field1"];
+    var r2 = r["feeds"][0]["field5"]; //heart rate
+    var r3 = r["feeds"][0]["field6"]; //oxygen level
 
+    r1 = double.parse(r1);
+    r2 = double.parse(r2);
+    r3 = double.parse(r3);
+    print(r2);
+    if(r2 > 100 && r2 < 60){
+      heartRateCheck = "out of range";
+    }
+    if(r3 > 100 && r3 < 95){
+      oxyRangeCheck = "out of range";
+    }
+    
+}
   String message;
   _LoginPageState(this.message);
   @override
@@ -97,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                             builder: (builder) {
                               return const Center(child: CircularProgressIndicator());
                         });
+                        
                         Map<String, String> data = {
                           "username": username.text,
                           "password": password.text
@@ -123,11 +157,12 @@ class _LoginPageState extends State<LoginPage> {
                                     "Invalid credentials, please try again...")),
                           );
                         } else {
+                          
                           // ignore: use_build_context_synchronously
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CircularMenu()),
+                                builder: (context) => MainScreen(username.text)),
                           );
                         }
                       },
@@ -155,6 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {
+                    
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -170,6 +206,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
 
   Future<void> initPlatform() async{
     await OneSignal.shared.setAppId("7602ad5b-32b0-4b91-9ea1-aee39e7a6775");

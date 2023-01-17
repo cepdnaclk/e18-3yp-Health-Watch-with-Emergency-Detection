@@ -10,18 +10,20 @@ import 'models/contactitem.dart';
 
 class addContacts extends StatefulWidget {
   final Function(contactItem) addcontact;
-
-  addContacts(this.addcontact);
+  String username;
+  addContacts(this.username,this.addcontact);
 
   @override
-  _addContactState createState() => _addContactState();
+  _addContactState createState() => _addContactState(username);
 }
 
 class _addContactState extends State<addContacts> {
     NetworkHandler networkHandler = NetworkHandler();
-
+  String username;
   final contactItem c =
       new contactItem('Contact Name', 'Email', 'Phone Number');
+      
+        _addContactState(this.username);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +82,7 @@ class _addContactState extends State<addContacts> {
                     "phone_number": phoneNoController.text,
                   };
                   Map<String, Map<String, String>> data1 = {"contacts": data};
-                  String username = "jaya123"; // ignore: unused_local_variable
+                  
                   print(data1);
                   var tokenKeeper = await networkHandler.addContactList('user/add/contacts/$username', data1);
                   
@@ -89,12 +91,12 @@ class _addContactState extends State<addContacts> {
 
                   widget.addcontact(contactitem);
                   String response = await networkHandler
-                      .getReminders("user/view/contacts/jaya123");
+                      .getReminders("user/view/contacts/$username");
                   Navigator.of(context).pop();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ViewAllContacts(response)));
+                          builder: (context) => ViewAllContacts(username,response)));
                 },
                 style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.teal,
