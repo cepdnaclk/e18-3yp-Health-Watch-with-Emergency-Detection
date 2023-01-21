@@ -296,6 +296,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "ternav_icons",
+      "rootUri": "file:///home/jayathri/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/ternav_icons-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "test_api",
       "rootUri": "file:///home/jayathri/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.4.12",
       "packageUri": "lib/",
@@ -338,7 +344,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-01-21T00:07:42.013756Z",
+  "generated": "2023-01-21T00:10:28.349439Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }
