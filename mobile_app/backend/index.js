@@ -7,7 +7,10 @@ const { TableServiceClient, odata } = require("@azure/data-tables");
 const emailNotificationController = require("./services/email-notification.services");
 
 var tempData = []; //array to store the temp values for one minute
+var heartRateData= [];
+var oxygenValueData = [];
 var contactEmail = [];
+var doctorEmail = [];
 
 const port = process.env.port || 8080;
 const app = express();
@@ -70,10 +73,13 @@ app.route("/").get((request, response)=>response.send("First Rest API: updated")
 app.listen(port, ()=>console.log(`port:${port} -> Server is running...`));
 
 var numCallings = 0;
-var average = 0;
+var avarageTemp = 0;
+var avaragePulse = 0;
+var avarageOxy = 0;
 var contactEmail = [];
+var doctorEmail = [];
 
-axios.get(`https://medicare3ypnew.azurewebsites.net/user/view/contacts/jaya123`)
+axios.get(`https://medicare3yp1.azurewebsites.net/user/view/contacts/isurika9`)
       .then(response1 => {
         for(j = 0; j<response1.data.data.length; j++){
           contactEmail.push(response1.data.data[j].contacts.email);
@@ -81,76 +87,125 @@ axios.get(`https://medicare3ypnew.azurewebsites.net/user/view/contacts/jaya123`)
         console.log(contactEmail)})
     .catch(error => console.log(error))
 
+    axios.get(`https://medicare3yp1.azurewebsites.net/user/view/doctors/isurika9`)
+          .then(response1 => {
+            for(j = 0; j<response1.data.data.length; j++){
+              doctorEmail.push(response1.data.data[j].contacts.email);
+            }
+            console.log(contactEmail)})
+        .catch(error => console.log(error))
+
 setInterval(() => {
      numCallings ++; //keeping track of readings for one minute
-     console.log('Wait for 1 second...')
+     console.log(`Wait for 1 second...${numCallings}`)
     
      // Make GET Request on every 2 second
-     axios.get(`https://medicare3ypnew.azurewebsites.net/user/userTemp/jaya123`)
+      axios.get(`https://api.thingspeak.com/channels/2005890/feeds.json?api_key=HBYZ9SP8D7EB5QSI&results=1`)
+     //axios.get(`https://api.thingspeak.com/channels/2005890/fields/1.json?api_key=HBYZ9SP8D7EB5QSI&results=1`)
     
          // Print data
         .then(response => {
            //const { timestamp, temperature } = response.data
-           tempData.push(response.data.temp);
-           username = response.data.username;
-           console.log(response.data.temp)
+          //console.log(response.data.feeds[0].field1);
+           tempData.push(parseFloat(response.data.feeds[0].field1));
+           heartRateData.push(parseFloat(response.data.feeds[0].field5));
+           oxygenValueData.push(parseFloat(response.data.feeds[0].field6));
 
-            if(numCallings == 6){ //here it should be 60 for 1 min entries if the data is taken by seconds
-              for(i =0; i < tempData.length; i++){
-                average += tempData[i];
-                //console.log(tempData);
-              }
-              average = average/(tempData.length); //average for one minute
-              console.log(`printing after one minute: ${average}`);
-              
-              var user_link = 'www.google.com';
-              
-              if(average < 23){
+           console.log(tempData);
+           console.log(heartRateData);
+           console.log(oxygenValueData);
+           username = "isurika9";
+           console.log(response.data.feeds[0].field1);
 
-                axios.get(`http://localhost:8080/user/${response.data.username}`)
-            
-                 // Print data
-                .then(response => {
-              //       axios.get(`https://medicare3ypnew.azurewebsites.net/view/contacts/${response.data.username}`)
-              //       .then(response1 => {
-              //           for(j = 0; j<response1.data.data.length; j++){
-              //             contactEmail.push(response1.data.data[j].contacts.email);
-              //           }
-              //           console.log(contactEmail)});
-                  
-              //     //user_link = response.data.xxxx
-
-              //     //****for testing commented: 
-              //           
-          //               console.log(response.data.data.fullname)
-          //           .catch(error => console.log('Error to email\n'))
-                    emailNotificationController.SendNotification(contactEmail,response.data.data.fullname, response.data.data.age, String(user_link));
-                })
-                // Print error message if occur
-                .catch(error => console.log('Error to fetch user details for email\n'))
-
-                //*************************************************************************************************************************** */
-                //sending email notifications to the doctor
-                //*************************************************************************************************************************** */
-                
-                axios.get(`https://medicare3ypnew.azurewebsites.net/notify/SendNotification`)
-            
-                 // Print data
-                .then(response => {
-                   console.log(response.data)
-                })
-            
-                // Print error message if occur
-                .catch(error => console.log('Error to send notification\n'))
-              }
-              tempData = [];
-              numCallings =0;
-              average = 0;
-            }
+            
 
 
         })
     
         // Print error message if occur
         .catch(error => console.log('Error to fetch data\n'))
-  }, 1000)
+  if(numCallings == 3){ //here it should be 60 for 5 min entries if the data is taken by seconds
+    for(i =0; i < tempData.length; i++){
+      avarageTemp += tempData[i];
+      avaragePulse += heartRateData[i];
+      avarageOxy += oxygenValueData[i];
+      //console.log(tempData);
+    }
+    avarageTemp = avarageTemp/(tempData.length); //avarageTemp for one minute
+    avaragePulse = avaragePulse/(tempData.length);
+    avarageOxy = avarageOxy/(tempData.length);
+
+    console.log(`printing after 5 minute: ${avarageTemp}`);
+    console.log(`printing after 5 minute: ${avaragePulse}`);
+    console.log(`printing after 5 minute: ${avarageOxy}`);
+    
+    var user_link = 'www.google.com';
+    
+    if(avaragePulse < 100 || avaragePulse < 55 || avarageTemp > 39.4 || avarageOxy < 90){
+      console.log(`in here`);
+      var averagePulse = avaragePulse;
+      var averageOxy = avarageOxy;
+      axios.get(`http://localhost:8080/user/isurika9`)
+  
+       // Print data
+      .then(response => {
+          console.log(`done`);
+          console.log(response);
+          emailNotificationController.SendNotification(contactEmail,doctorEmail,response.data.data.fullname, response.data.data.age, String(user_link), averagePulse, averageOxy);
+      })
+      // Print error message if occur
+      .catch(error => console.log('Error to fetch user details for email\n'))
+
+      //*************************************************************************************************************************** */
+      //sending email notifications to the doctor
+      //*************************************************************************************************************************** */
+
+      if(avaragePulse > 55){
+              //axios.get(`https://medicare3yp1.azurewebsites.net/notify/SendNotificationPulseLow`)
+              axios.get(`http://localhost:8080/notify/SendNotificationPulseLow`)
+                    .then(response => {
+                       console.log(response.data)
+                    })
+                    .catch(error => console.log('Error to send notification\n'))
+      }
+      if(avaragePulse > 100){
+              //axios.get(`https://medicare3yp1.azurewebsites.net/notify/SendNotificationPulseHigh`)
+              axios.get(`http://localhost:8080/notify/SendNotificationPulseLow`)
+            .then(response => {
+               console.log(response.data)
+            })
+            .catch(error => console.log('Error to send notification\n'))
+
+      }
+      if(avarageTemp > 39.4){
+              //axios.get(`https://medicare3yp1.azurewebsites.net/notify/SendNotificationTemp`)
+              axios.get(`http://localhost:8080/notify/SendNotificationTemp`)
+            .then(response => {
+               console.log(response.data)
+            })
+            .catch(error => console.log('Error to send notification\n'))
+
+      }
+      if(avarageOxy < 90){
+            //axios.get(`https://medicare3yp1.azurewebsites.net/notify/SendNotificationOxy`)
+            axios.get(`http://localhost:8080/notify/SendNotificationOxy`)
+                  .then(response => {
+                     console.log(response.data)
+                  })
+                  .catch(error => console.log('Error to send notification\n'))
+      }
+      
+    }
+    tempData = [];
+    heartRateData = [];
+    oxygenValueData = [];
+    
+    avarageTemp = 0;
+    avaragePulse = 0;
+    avarageOxy = 0;
+
+    numCallings =0;
+  }
+
+
+  }, 10000)

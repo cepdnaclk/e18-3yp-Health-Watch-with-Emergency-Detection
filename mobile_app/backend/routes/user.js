@@ -32,6 +32,8 @@ router.route("/login").post((request, response)=>{
         }
     });
 });
+
+
 //user registeration only requirments here are: username, email and a password which are going to be required for the next log in
 
 router.route("/register").post((request,response) => {
