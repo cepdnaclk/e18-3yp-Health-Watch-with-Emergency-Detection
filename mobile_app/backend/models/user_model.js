@@ -19,12 +19,13 @@ const User = Schema({
         type:String,
         required:true
     },
-    reminders:{
-        title: String,
-        frequency: String,
-        time: String,
-    }
-,
+    fullname: {type:String,},
+    age: {type:String,},
+    phonenumber: {type:String,},
+    area: {type:String,},
+    medical: {type:String,},
+    location: {type:String,},
+
 });
 
 //the first argument should be in the singular form--> collection name: users in this case

@@ -79,7 +79,7 @@ var avarageOxy = 0;
 var contactEmail = [];
 var doctorEmail = [];
 
-axios.get(`https://medicare3yp1.azurewebsites.net/user/view/contacts/isurika9`)
+axios.get(`http://localhost:8080/user/view/contacts/jaya123`)
       .then(response1 => {
         for(j = 0; j<response1.data.data.length; j++){
           contactEmail.push(response1.data.data[j].contacts.email);
@@ -87,7 +87,7 @@ axios.get(`https://medicare3yp1.azurewebsites.net/user/view/contacts/isurika9`)
         console.log(contactEmail)})
     .catch(error => console.log(error))
 
-    axios.get(`https://medicare3yp1.azurewebsites.net/user/view/doctors/isurika9`)
+    axios.get(`http://localhost:8080/user/user/view/doctors/jaya123`)
           .then(response1 => {
             for(j = 0; j<response1.data.data.length; j++){
               doctorEmail.push(response1.data.data[j].contacts.email);
@@ -114,7 +114,7 @@ setInterval(() => {
            console.log(tempData);
            console.log(heartRateData);
            console.log(oxygenValueData);
-           username = "isurika9";
+           username = "jaya123";
            console.log(response.data.feeds[0].field1);
 
             
@@ -141,11 +141,11 @@ setInterval(() => {
     
     var user_link = 'www.google.com';
     
-    if(avaragePulse < 100 || avaragePulse < 55 || avarageTemp > 39.4 || avarageOxy < 90){
+    if(avaragePulse > 100 || avaragePulse < 55 || avarageTemp > 39.4 || avarageOxy < 90){
       console.log(`in here`);
       var averagePulse = avaragePulse;
       var averageOxy = avarageOxy;
-      axios.get(`http://localhost:8080/user/isurika9`)
+      axios.get(`http://localhost:8080/user/jaya123`)
   
        // Print data
       .then(response => {
@@ -160,7 +160,7 @@ setInterval(() => {
       //sending email notifications to the doctor
       //*************************************************************************************************************************** */
 
-      if(avaragePulse > 55){
+      if(avaragePulse < 55){
               //axios.get(`https://medicare3yp1.azurewebsites.net/notify/SendNotificationPulseLow`)
               axios.get(`http://localhost:8080/notify/SendNotificationPulseLow`)
                     .then(response => {

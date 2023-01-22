@@ -81,6 +81,26 @@ router.route("/enter/:username").patch((request,response) => {
 
 });
 
+router.route("/enter/location/:username").patch((request,response) => {
+
+    User.findOneAndUpdate({username: request.params.username},
+        {$set:{
+            
+            location:request.body.location,
+        }}, //as a parameter
+         //once the username is found password is sending in the body
+        (err, result) => {
+            if(err) return response.status(500).json({msg: err});
+            const msg = {
+                msg: "new data entered successfully!",
+                username:request.params.username,
+            };
+            return response.json(msg);
+        }
+    );
+
+});
+
 //in the deleting and updating middleware token checking is used since it is better to authenticate the user before doing any operations
 
 
