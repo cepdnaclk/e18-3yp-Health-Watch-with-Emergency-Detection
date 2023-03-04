@@ -13,7 +13,7 @@
         {
             "name": "De Silva M.S.G.M.",
             "email": "e18412@eng.pdn.ac.lk",
-            "eNumber": "E/18/412",
+            "eNumber": "E/18/412"
         }
     ],
     "supervisors": [
@@ -27,5 +27,5 @@
         }
 
     ],
-    "tags": ["Web", "Embedded Systems"]
+    "tags": ["Mobile Application", "Embedded Systems", "flutter", "Azure"]
 }
